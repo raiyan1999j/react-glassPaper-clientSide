@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { IoFlower } from "react-icons/io5";
 import { FaEye,FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,9 @@ export default function Registration() {
   const navigate = useNavigate();
   const [txtOrPass,setTxtOrPass] = useState(false);
   const formRef = useRef(null);
-  const { themeMode, registerUser } = useContext(InfoProvider);
+  const { themeMode, registerUser, loading, routePage } = useContext(InfoProvider);
 
-  const formHandler = (event) => {
+  const formHandler =async (event) => {
     event.preventDefault();
     const imageFormate = /\.(jpg|jpeg|png|gif|bmp|svg|webp)$/i;
     const checkItems = {
@@ -76,15 +76,18 @@ export default function Registration() {
 
       registerUser(wrap);
       formRef.current.reset();
-      toast('Successfully created');
     }
-
-    
   };
 
   const loginPage = () => {
     navigate("/login");
   };
+
+  useEffect(()=>{
+    if(routePage){
+      navigate('/home')
+    }
+  },[routePage])
   return (
     <>
       <ToastContainer
@@ -100,7 +103,12 @@ export default function Registration() {
         theme="light"
         transition:Bounce
       />
-      <section>
+      {
+        loading?
+        <div className="h-screen w-full flex justify-center items-center">
+        <span className="loading loading-bars loading-lg"></span>
+        </div>:
+        <section>
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div
             className={`sm:mx-auto sm:w-full sm:max-w-md  flex flex-row py-4 justify-center items-center rounded-t-lg ${
@@ -215,6 +223,8 @@ export default function Registration() {
           </div>
         </div>
       </section>
+      }
+      
     </>
   );
 }

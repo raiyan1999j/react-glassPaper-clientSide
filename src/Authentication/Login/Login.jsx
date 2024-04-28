@@ -1,23 +1,65 @@
-import { useContext } from "react";
+import { useContext, useState,useRef, useEffect } from "react";
 import { IoFlower } from "react-icons/io5";
+import { FaEye,FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { InfoProvider } from "../../ContextProvider/ContextProvider";
+import { toast,ToastContainer } from "react-toastify";
 
 export default function Login() {
     const navigate = useNavigate();
-    const {themeMode} = useContext(InfoProvider);
+    const formRef = useRef();
+    const [txtOrPass,setTxtOrPass] = useState(false);
+    const {themeMode,loginUser,routePage,loading,loginGoogle,loginGithub} = useContext(InfoProvider);
 
-    const formHandler=(event)=>{
+    const formHandler=async(event)=>{
         event.preventDefault();
+        const form = event.target;
+
+        const wrap ={
+          mail : form.email.value,
+          pass : form.password.value
+        }
+
+       loginUser(wrap);
+       formRef.current.reset();
     }
 
     const registerPage=()=>{
         navigate('/registration')
     }
 
-    console.log(themeMode)
+    const googleLogin=()=>{
+      loginGoogle();
+    }
+
+    const githubLogin=()=>{
+      loginGithub();
+    }
+    useEffect(()=>{
+      if(routePage){
+        navigate('/home')
+      }
+    },[routePage])
     return (
       <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
+      {
+        loading?
+        <div className="h-screen w-full flex justify-center items-center">
+        <span className="loading loading-bars loading-lg"></span>
+        </div>:
         <section>
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className={`sm:mx-auto sm:w-full sm:max-w-md  flex flex-row py-4 justify-center items-center rounded-t-lg ${themeMode?"bg-gradient-to-tr from-purple-600 to-purple-300":"bg-gradient-to-tr from-slate-900 to-slate-500"}`}>
@@ -29,7 +71,7 @@ export default function Login() {
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
             <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-              <form className="space-y-6" onClick={formHandler}>
+              <form className="space-y-6" onSubmit={formHandler} ref={formRef}>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                     Email address
@@ -39,8 +81,6 @@ export default function Login() {
                       id="email"
                       name="email"
                       type="email"
-                      autoComplete="email"
-                      required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -50,15 +90,18 @@ export default function Login() {
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     Password
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-2 relative w-full">
                     <input
                       id="password"
                       name="password"
-                      type="password"
-                      autoComplete="current-password"
-                      required
+                      type={txtOrPass?"text":"password"}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <div className="absolute right-4 top-2" onClick={()=>{setTxtOrPass(!txtOrPass)}}>
+                    {
+                      txtOrPass?<FaEye />: <FaEyeSlash/>
+                    }
+                    </div>
                   </div>
                 </div>
   
@@ -83,8 +126,8 @@ export default function Login() {
                 </div>
   
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  <a
-                    href="#"
+                  <button
+                    onClick={googleLogin}
                     className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                   >
                     <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">
@@ -106,10 +149,10 @@ export default function Login() {
                       />
                     </svg>
                     <span className="text-sm font-semibold leading-6">Google</span>
-                  </a>
+                  </button>
   
-                  <a
-                    href="#"
+                  <button
+                    onClick={githubLogin}
                     className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                   >
                     <svg className="h-5 w-5 fill-[#24292F]" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -120,7 +163,7 @@ export default function Login() {
                       />
                     </svg>
                     <span className="text-sm font-semibold leading-6">GitHub</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -134,6 +177,8 @@ export default function Login() {
           </div>
         </div>
         </section>
+      }
+        
       </>
     )
   }
