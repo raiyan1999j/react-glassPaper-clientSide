@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { IoFlower } from "react-icons/io5";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { InfoProvider } from "./ContextProvider/ContextProvider";
@@ -17,6 +17,10 @@ export default function App() {
   const registerPage = () => {
     navigate("/registration");
   };
+
+  useEffect(()=>{
+    navigate('/home')
+  },[])
   return (
     <>
       <section

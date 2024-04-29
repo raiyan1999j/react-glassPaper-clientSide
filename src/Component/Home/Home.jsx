@@ -4,6 +4,8 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import Categories from "./Categories";
 import commonData from "../../CommonData/CommonData";
+import { useEffect, useState } from "react";
+import CraftItems from "./CraftItems";
 
 const categoryInfo = [
   {
@@ -32,6 +34,18 @@ const categoryInfo = [
   },
 ];
 export default function Home() {
+  const [container,setContainer] = useState([]);
+
+  useEffect(()=>{
+    async function loadData(){
+      const step1 = await fetch('http://localhost:5000/getItems');
+      const step2 = await step1.json();
+
+      setContainer(step2);
+    }
+
+    loadData();
+  },[])
   return (
     <>
       <section className="w-[1200px] mx-auto mt-[50px]">
@@ -95,7 +109,16 @@ export default function Home() {
       </section>
 
       <section className="w-[1200px] mx-auto my-[50px]">
-
+            <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto">
+              {
+                container.map((value,id)=>{
+                  return <CraftItems 
+                    key={value._id}
+                    info={value}
+                  />
+                })
+              }
+            </div>
       </section>
     </>
   );
