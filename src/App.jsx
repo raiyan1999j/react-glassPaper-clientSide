@@ -44,7 +44,7 @@ export default function App() {
                 <NavLink>art & crafts</NavLink>
               </li>
               <li>
-                <NavLink>Add Items</NavLink>
+                <NavLink to="/addItem">Add Items</NavLink>
               </li>
               <li>
                 <NavLink>My items</NavLink>
