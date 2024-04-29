@@ -1,8 +1,10 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import ItemSelection from "./ItemSelection";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { InfoProvider } from "../../ContextProvider/ContextProvider";
+import commonData from "../../CommonData/CommonData";
 
 const categories = {
   "card-making": [
@@ -17,7 +19,7 @@ const categories = {
     "Watercolor Cards",
     "Stamped Cards",
   ],
-  scrapbooking: [
+  "scrapbooking": [
     "Layouts",
     "Mini Albums",
     "Pocket Pages",
@@ -53,7 +55,7 @@ const categories = {
     "Faux Stained Glass",
     "Glass Painting Techniques",
   ],
-  lampworking: [
+  "lampworking": [
     "Glass Beads",
     "Pendants",
     "Earrings",
@@ -79,7 +81,9 @@ const categories = {
   ],
 };
 export default function AddItem() {
+  const {userData} = useContext(InfoProvider);
   const imgPreview = useRef("");
+  const formRef = useRef();
   const [subItem, setSubItem] = useState();
   const [image, setImg] = useState("");
   const [stock,setStock]= useState(true);
@@ -113,6 +117,7 @@ export default function AddItem() {
     const name= form.name.value;
     const stock= form.stock.value;
     const imgURL= image;
+    const owner = userData?.email || userData?.displayName;
 
     if(!Number(form.price.value) || !Number(form.rating.value)){
       toast('please insert valid number');
@@ -142,10 +147,24 @@ export default function AddItem() {
       email,
       name,
       stock,
-      imgURL
+      imgURL,
+      owner
     }
-    
-    console.log(wrap);
+
+    fetch('http://localhost:5000/addItem',{
+      method:'Post',
+      headers:{
+        "accept":"application/json",
+        "content-type":"application/json"
+      },
+      body:JSON.stringify(wrap)
+    }).then(()=>{
+      toast('successfully added')
+      setStock(true);
+      setCustom(true);
+      setImg("");
+      formRef.current.reset();
+    })
   };
   return (
     <>
@@ -196,7 +215,7 @@ export default function AddItem() {
             </div>
           </div>
           <div>
-            <form onSubmit={formHandler}>
+            <form onSubmit={formHandler} ref={formRef}>
               <div className="grid grid-cols-2 gap-x-6">
                 <div>
                   <div className="label">
@@ -208,7 +227,7 @@ export default function AddItem() {
                     name="itemSelect"
                   >
                     <option value="">-- --</option>
-                    {Object.keys(categories).map((value, id) => {
+                    {Object.keys(commonData).map((value, id) => {
                       return <ItemSelection key={id} items={value} />;
                     })}
                   </select>
@@ -223,7 +242,7 @@ export default function AddItem() {
                     name="subCategory"
                   >
                     <option value="">-- --</option>
-                    {categories?.[`${subItem}`]?.map((value, id) => {
+                    {commonData?.[`${subItem}`]?.map((value, id) => {
                       return <ItemSelection key={id} items={value} />;
                     })}
                   </select>
