@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { IoFlower } from "react-icons/io5";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { InfoProvider } from "./ContextProvider/ContextProvider";
+import Footer from "./Component/Footer/Footer";
 
 export default function App() {
   const { changeTheme, themeMode, userData, logoutUser,loading } = useContext(InfoProvider);
@@ -45,7 +46,7 @@ export default function App() {
                 <NavLink to="/home">Home</NavLink>
               </li>
               <li>
-                <NavLink>art & crafts</NavLink>
+                <NavLink to="/artCraft">art & crafts</NavLink>
               </li>
               <li>
                 <NavLink to="/addItem">Add Items</NavLink>
@@ -142,6 +143,10 @@ export default function App() {
 
       <section className="w-[1200px] mx-auto">
         <Outlet />
+      </section>
+
+      <section className="mt-[100px] bg-footerImg bg-no-repeat bg-cover">
+        <Footer/>
       </section>
     </>
   );

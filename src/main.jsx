@@ -14,6 +14,7 @@ import MyItem from './Component/MyItem/MyItem.jsx'
 import UpdatePage from './Component/UpdatePage/UpdatePage.jsx'
 import Error from './ErrorPage/Error.jsx'
 import SubCategoryPage from './Component/SubCategoryPage/SubCategoryPage.jsx'
+import ArtCraft from './Component/AllArtCraft/ArtCraft.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
 
           return step2;
         }
+      },
+      {
+        path:'/artCraft',
+        element:<ArtCraft/>
       }
     ]
   }
