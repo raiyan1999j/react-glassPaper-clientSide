@@ -12,10 +12,13 @@ import AddItem from './Component/AddItem/AddItem.jsx'
 import Details from './DetailsView/Details.jsx'
 import MyItem from './Component/MyItem/MyItem.jsx'
 import UpdatePage from './Component/UpdatePage/UpdatePage.jsx'
+import Error from './ErrorPage/Error.jsx'
+import SubCategoryPage from './Component/SubCategoryPage/SubCategoryPage.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
     element:<App/>,
+    errorElement:<Error/>,
     children:[
       {
         path:'/login',
@@ -53,6 +56,17 @@ const router = createBrowserRouter([
         element:<PrivetRoute><UpdatePage/></PrivetRoute>,
         loader:async ({params})=>{
           const step1 = await fetch(`http://localhost:5000/getSpecific/${params.id}`);
+
+          const step2 = await step1.json();
+
+          return step2;
+        }
+      },
+      {
+        path:'/subCategoryPage/:category',
+        element:<SubCategoryPage/>,
+        loader: async ({params})=>{
+          const step1 = await fetch(`http://localhost:5000/subCategoryPage/${params.category}`)
 
           const step2 = await step1.json();
 

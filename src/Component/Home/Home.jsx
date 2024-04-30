@@ -2,11 +2,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import Categories from "./Categories";
-import commonData from "../../CommonData/CommonData";
 import { useEffect, useState } from "react";
 import CraftItems from "./CraftItems";
 import { useNavigate } from "react-router-dom";
+import PageNumbering from "./PageNumbering";
+import SubCategory from './SubCategory';
 
 const categoryInfo = [
   {
@@ -36,6 +36,9 @@ const categoryInfo = [
 ];
 export default function Home() {
   const [container,setContainer] = useState([]);
+  const [filter,setFilter] = useState();
+  const [pageNumber,setPageNumber] = useState(0);
+  const [totalPage,setTotal] = useState();
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -44,13 +47,38 @@ export default function Home() {
       const step2 = await step1.json();
 
       setContainer(step2);
+      restructure(step2);
     }
-
     loadData();
+    
   },[]);
 
+  const restructure=(data)=>{
+    let array = [];
+    let len = data.length;
+
+    for(let repeat=0; repeat<=len; repeat += 6){
+      let formate = data.slice(repeat, repeat+6)
+
+      array.push(formate)
+    }
+    let arrayLen = array.length;
+
+    setFilter(array);
+    setTotal(arrayLen)
+  }
+
+  const selectPageNumber=(value)=>{
+    let reValue = value - 1;
+
+    setPageNumber(reValue);
+  }
   const detailView=(value)=>{
     navigate(`/details/${value}`)
+  }
+
+  const moreProducts=(value)=>{
+    navigate(`/subCategoryPage/${value}`)
   }
   return (
     <>
@@ -88,43 +116,49 @@ export default function Home() {
           </Swiper>
         </div>
       </section>
-
       <section className="w-[1200px] mx-auto my-[50px]">
-        <div className="mb-5">
-          <h2 className="text-2xl font-mono font-bold capitalize underline">
-            art & craft categories
-          </h2>
-        </div>
-
-        <div className="w-full flex flex-wrap flex-row">
-          <div className="w-full flex flex-row flex-wrap items-center">
-            <div className="from-black/30 to-slate-500/20 bg-gradient-to-r py-3 px-3">
-              <h3 className="capitalize text-lg font-medium font-serif">Choose Category</h3>
-            </div>
-            {
-              Object.keys(commonData).map((title,id)=>{
-                return <Categories 
-                key={id} 
-                header={title}
-                subItem={commonData[title]}  
-                />
-              })
-            }
-          </div>
-        </div>
-      </section>
-
-      <section className="w-[1200px] mx-auto my-[50px]">
+      <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">Craft items</h2>
             <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto">
               {
-                container.map((value,id)=>{
-                  return <CraftItems 
-                    key={value._id}
+                filter?.[`${pageNumber}`].map((value,index)=>{
+                  return <CraftItems
+                    key={index}
                     info={value}
                     viewDetails={(val)=>{detailView(val)}}
                   />
                 })
               }
+            </div>
+            <div className="flex justify-end w-[90%] mt-[50px]">
+              <PageNumbering 
+              pageTotal={totalPage}
+              pageNumberSelect={(value)=>{selectPageNumber(value)}}
+              />
+            </div>
+      </section>
+
+      <section>
+        <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">
+          Some Items you may check out
+        </h2>
+
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto">
+              {
+                filter?.[`${pageNumber}`].map((value,index)=>{
+                  return <SubCategory
+                    key={index}
+                    info={value}
+                    productsMore={(val)=>{moreProducts(val)}}
+                  />
+                })
+              }
+            </div>
+
+            <div className="flex justify-end w-[90%] mt-[50px]">
+              <PageNumbering 
+              pageTotal={totalPage}
+              pageNumberSelect={(value)=>{selectPageNumber(value)}}
+              />
             </div>
       </section>
     </>

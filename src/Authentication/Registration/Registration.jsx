@@ -76,6 +76,7 @@ export default function Registration() {
 
       registerUser(wrap);
       formRef.current.reset();
+      toast('successfully created');
     }
   };
 

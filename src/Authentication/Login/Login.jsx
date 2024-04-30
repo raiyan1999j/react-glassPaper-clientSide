@@ -1,16 +1,18 @@
 import { useContext, useState,useRef, useEffect } from "react";
 import { IoFlower } from "react-icons/io5";
 import { FaEye,FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { InfoProvider } from "../../ContextProvider/ContextProvider";
 import { toast,ToastContainer } from "react-toastify";
 
 export default function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
     const formRef = useRef();
     const [txtOrPass,setTxtOrPass] = useState(false);
     const {themeMode,loginUser,routePage,loading,loginGoogle,loginGithub} = useContext(InfoProvider);
 
+    console.log(location)
     const formHandler=async(event)=>{
         event.preventDefault();
         const form = event.target;
@@ -37,7 +39,7 @@ export default function Login() {
     }
     useEffect(()=>{
       if(routePage){
-        navigate('/home')
+        navigate(location.state==""?'/home':location.state)
       }
     },[routePage])
     return (

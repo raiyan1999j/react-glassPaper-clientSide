@@ -41,14 +41,6 @@ export default function MyItem() {
         
       }
     });
-
-    // const copy = [...info];
-
-    // const updateValue = copy.filter((val,index)=>{
-    //     return copy[index]._id != value
-    // })
-
-    // setInfo(updateValue)
   };
 
   useEffect(() => {
