@@ -1,7 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom"
 
 export default function Details(){
-    const {item,subItem,description,custom,email,imgURL,name,price,rating} = useLoaderData();
+    const {item,subItem,description,custom,email,imgURL,name,price,rating,stock} = useLoaderData();
     return(
         <>
         <section className="w-[1200px] mx-auto my-[50px]">
@@ -16,19 +16,29 @@ export default function Details(){
                     <span className="badge badge-neutral text-lg my-6">
                         {subItem}
                     </span>
-                    <div className="flex flex-row w-full">
-                        <div className="mr-16">
+                    <div className="flex flex-row justify-between w-[80%]">
+                        <div>
                             <p className="font-medium text-base text-gray-600/50 capitalize">Rating:
-                            <span className="badge badge-secondary ml-4">{rating}</span>
+                            <span className="badge badge-secondary ml-2">{rating}</span>
                             </p>
                         </div>
                         <div>
                             <p className="font-medium text-base text-gray-600/50 capitalize">
                                 price:
                             
-                            <span className="badge badge-secondary ml-4">
+                            <span className="badge badge-secondary ml-2">
                                 {price}$
                             </span>
+                            </p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-base text-gray-600/50 capitalize">Customization:
+                            <span className={`badge ${custom=="Yes"?"badge-secondary":"badge-error"} ml-2`}>{custom}</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-base text-gray-600/50 capitalize">Stock:
+                            <span className={`badge ${stock=="In stock"?"badge-secondary":"badge-error"} ml-2`}>{stock}</span>
                             </p>
                         </div>
                     </div>

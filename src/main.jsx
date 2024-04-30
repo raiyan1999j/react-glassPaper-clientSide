@@ -10,6 +10,7 @@ import Home from './Component/Home/Home.jsx';
 import PrivetRoute from './PrivetRoute/PrivetRoute.jsx'
 import AddItem from './Component/AddItem/AddItem.jsx'
 import Details from './DetailsView/Details.jsx'
+import MyItem from './Component/MyItem/MyItem.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
 
           return step2;
         }
+      },
+      {
+        path:'/myItem',
+        element:<PrivetRoute><MyItem/></PrivetRoute>
       }
     ]
   }

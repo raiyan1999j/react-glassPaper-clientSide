@@ -51,7 +51,7 @@ export default function App() {
                 <NavLink to="/addItem">Add Items</NavLink>
               </li>
               <li>
-                <NavLink>My items</NavLink>
+                <NavLink to="/myItem">My items</NavLink>
               </li>
             </ul>
           </div>
