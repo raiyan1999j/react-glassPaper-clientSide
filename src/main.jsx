@@ -9,6 +9,7 @@ import Registration from './Authentication/Registration/Registration.jsx'
 import Home from './Component/Home/Home.jsx';
 import PrivetRoute from './PrivetRoute/PrivetRoute.jsx'
 import AddItem from './Component/AddItem/AddItem.jsx'
+import Details from './DetailsView/Details.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -29,6 +30,17 @@ const router = createBrowserRouter([
       {
         path:'/addItem',
         element:<PrivetRoute><AddItem/></PrivetRoute>
+      },
+      {
+        path:'/details/:id',
+        element:<PrivetRoute><Details/></PrivetRoute>,
+        loader:async ({params})=>{
+          const step1 = await fetch(`http://localhost:5000/getDetails/${params.id}`);
+
+          const step2 = await step1.json();
+
+          return step2;
+        }
       }
     ]
   }

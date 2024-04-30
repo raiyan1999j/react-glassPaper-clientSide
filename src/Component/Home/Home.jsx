@@ -6,6 +6,7 @@ import Categories from "./Categories";
 import commonData from "../../CommonData/CommonData";
 import { useEffect, useState } from "react";
 import CraftItems from "./CraftItems";
+import { useNavigate } from "react-router-dom";
 
 const categoryInfo = [
   {
@@ -35,6 +36,7 @@ const categoryInfo = [
 ];
 export default function Home() {
   const [container,setContainer] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     async function loadData(){
@@ -45,7 +47,11 @@ export default function Home() {
     }
 
     loadData();
-  },[])
+  },[]);
+
+  const detailView=(value)=>{
+    navigate(`/details/${value}`)
+  }
   return (
     <>
       <section className="w-[1200px] mx-auto mt-[50px]">
@@ -115,6 +121,7 @@ export default function Home() {
                   return <CraftItems 
                     key={value._id}
                     info={value}
+                    viewDetails={(val)=>{detailView(val)}}
                   />
                 })
               }

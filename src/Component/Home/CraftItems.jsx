@@ -1,5 +1,9 @@
-export default function CraftItems({ info }) {
-    const {imgURL,price,rating,item,subItem,name} = info;
+export default function CraftItems({ info,viewDetails }) {
+    const {imgURL,price,rating,item,subItem,name,_id} = info;
+
+    const detailView=()=>{
+        viewDetails(_id)
+    }
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl">
@@ -28,7 +32,7 @@ export default function CraftItems({ info }) {
             </div>
           </div>
           <div className="card-actions justify-end mt-4">
-            <button className="btn btn-outline btn-info capitalize">view details</button>
+            <button className="btn btn-outline btn-info capitalize" onClick={detailView}>view details</button>
           </div>
         </div>
       </div>
