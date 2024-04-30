@@ -1,45 +1,95 @@
-import { useContext, useEffect, useState } from "react"
-import { InfoProvider } from "../../ContextProvider/ContextProvider"
+import { useContext, useEffect, useState } from "react";
+import { InfoProvider } from "../../ContextProvider/ContextProvider";
 import ItemsCard from "./ItemsCard";
+import Swal from "sweetalert2";
 
-export default function MyItem(){
-    const {userData} = useContext(InfoProvider);
-    const [info,setInfo] = useState([]);
+export default function MyItem() {
+  const { userData } = useContext(InfoProvider);
+  const [info, setInfo] = useState([]);
 
-    useEffect(()=>{
-        async function loadData(){
-            let nameSelection;
+  const dataRemove = (value) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "It will remove permanently",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        const copy = [...info];
 
-            if(!userData.email){
-                nameSelection = userData.displayName
-            }else{
-                nameSelection = userData.email
-            }
+        const updateValue = copy.filter((val, index) => {
+          return copy[index]._id != value;
+        });
 
-            await fetch(`http://localhost:5000/myItem/${nameSelection}`)
-            .then(response=>response.json())
-            .then((data)=>{setInfo(data)})
-        }
+        setInfo(updateValue);
 
-        loadData()
-    },[])
-    return(
-        <>
-        <section className="w-[1200px] mx-auto my-[50px]">
-            <div className="w-full grid grid-cols-[20%_80%] gap-x-4">
-                <div>
+        fetch(`http://localhost:5000/removeItem/${value}`,{
+            method:"Delete",
+            headers:{
+                'accept':'application/json',
+                'content-type':'application/json'
+            },
+        })
+        
+      }
+    });
 
-                </div>
-                <div className="w-full grid grid-cols-3 gap-x-4 gap-y-8">
-                    {info.map((value,index)=>{
-                        return <ItemsCard
-                            key={value._id}
-                            data={value}
-                        />
-                    })}
-                </div>
-            </div>
-        </section>
-        </>
-    )
+    // const copy = [...info];
+
+    // const updateValue = copy.filter((val,index)=>{
+    //     return copy[index]._id != value
+    // })
+
+    // setInfo(updateValue)
+  };
+
+  useEffect(() => {
+    async function loadData() {
+      let nameSelection;
+
+      if (!userData.email) {
+        nameSelection = userData.displayName;
+      } else {
+        nameSelection = userData.email;
+      }
+
+      await fetch(`http://localhost:5000/myItem/${nameSelection}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setInfo(data);
+        });
+    }
+
+    loadData();
+  }, []);
+  return (
+    <>
+      <section className="w-[1200px] mx-auto my-[50px]">
+        <div className="w-full grid grid-cols-[20%_80%] gap-x-4">
+          <div></div>
+          <div className="w-full grid grid-cols-3 gap-x-4 gap-y-8">
+            {info.map((value, index) => {
+              return (
+                <ItemsCard
+                  key={value._id}
+                  data={value}
+                  removeData={(val) => {
+                    dataRemove(val);
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
