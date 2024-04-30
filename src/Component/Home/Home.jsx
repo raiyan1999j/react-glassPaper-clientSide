@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import CraftItems from "./CraftItems";
 import { useNavigate } from "react-router-dom";
 import PageNumbering from "./PageNumbering";
-import SubCategory from './SubCategory';
+import SubCategory from "./SubCategory";
+import { Fade } from "react-awesome-reveal";
 
 const categoryInfo = [
   {
@@ -35,58 +36,57 @@ const categoryInfo = [
   },
 ];
 export default function Home() {
-  const [container,setContainer] = useState([]);
-  const [filter,setFilter] = useState();
-  const [pageNumber,setPageNumber] = useState(0);
-  const [totalPage,setTotal] = useState();
+  const [container, setContainer] = useState([]);
+  const [filter, setFilter] = useState();
+  const [pageNumber, setPageNumber] = useState(0);
+  const [totalPage, setTotal] = useState();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    async function loadData(){
-      const step1 = await fetch('http://localhost:5000/getItems');
+  useEffect(() => {
+    async function loadData() {
+      const step1 = await fetch("http://localhost:5000/getItems");
       const step2 = await step1.json();
 
       setContainer(step2);
       restructure(step2);
     }
     loadData();
-    
-  },[]);
+  }, []);
 
-  const restructure=(data)=>{
+  const restructure = (data) => {
     let array = [];
     let len = data.length;
 
-    for(let repeat=0; repeat<=len; repeat += 6){
-      let formate = data.slice(repeat, repeat+6)
+    for (let repeat = 0; repeat <= len; repeat += 6) {
+      let formate = data.slice(repeat, repeat + 6);
 
-      array.push(formate)
+      array.push(formate);
     }
     let arrayLen = array.length;
 
     setFilter(array);
-    setTotal(arrayLen)
-  }
+    setTotal(arrayLen);
+  };
 
-  const selectPageNumber=(value)=>{
+  const selectPageNumber = (value) => {
     let reValue = value - 1;
 
     setPageNumber(reValue);
-  }
-  const detailView=(value)=>{
-    navigate(`/details/${value}`)
-  }
+  };
+  const detailView = (value) => {
+    navigate(`/details/${value}`);
+  };
 
-  const moreProducts=(value)=>{
-    navigate(`/subCategoryPage/${value}`)
-  }
+  const moreProducts = (value) => {
+    navigate(`/subCategoryPage/${value}`);
+  };
   return (
     <>
       <section className="w-[1200px] mx-auto mt-[50px]">
         <div className="w-[1000px] mx-auto">
           <Swiper
             autoplay={{
-              delay: 2500,
+              delay: 8000,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -106,7 +106,9 @@ export default function Home() {
                       />
                     </div>
                     <div className="absolute w-[40%] left-0 top-[50%] py-4 px-2 rounded-r-lg text-white bg-gradient-to-tr from-black to-gray-500">
-                      <p>{value.description}</p>
+                      <p>
+                        {value.description}
+                      </p>
                     </div>
                     <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-tr from-pink-400 to-pink-600 opacity-30 rounded-xl"></div>
                   </div>
@@ -117,49 +119,65 @@ export default function Home() {
         </div>
       </section>
       <section className="w-[1200px] mx-auto my-[50px]">
-      <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">Craft items</h2>
-            <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto">
-              {
-                filter?.[`${pageNumber}`].map((value,index)=>{
-                  return <CraftItems
-                    key={index}
-                    info={value}
-                    viewDetails={(val)=>{detailView(val)}}
-                  />
-                })
-              }
-            </div>
-            <div className="flex justify-end w-[90%] mt-[50px]">
-              <PageNumbering 
-              pageTotal={totalPage}
-              pageNumberSelect={(value)=>{selectPageNumber(value)}}
+        <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">
+        <Fade delay={1e1} cascade damping={1e-1}>
+        Craft items
+        </Fade>
+          
+        </h2>
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto">
+          {filter?.[`${pageNumber}`].map((value, index) => {
+            return (
+              <CraftItems
+                key={index}
+                info={value}
+                viewDetails={(val) => {
+                  detailView(val);
+                }}
               />
-            </div>
+            );
+          })}
+        </div>
+        <div className="flex justify-end w-[90%] mt-[50px]">
+          <PageNumbering
+            pageTotal={totalPage}
+            pageNumberSelect={(value) => {
+              selectPageNumber(value);
+            }}
+          />
+        </div>
       </section>
 
       <section>
         <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">
+          
+          <Fade delay={1e1} cascade damping={1e-1}>
           Some Items you may check out
+          </Fade>
         </h2>
 
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto">
-              {
-                filter?.[`${pageNumber}`].map((value,index)=>{
-                  return <SubCategory
-                    key={index}
-                    info={value}
-                    productsMore={(val)=>{moreProducts(val)}}
-                  />
-                })
-              }
-            </div>
-
-            <div className="flex justify-end w-[90%] mt-[50px]">
-              <PageNumbering 
-              pageTotal={totalPage}
-              pageNumberSelect={(value)=>{selectPageNumber(value)}}
+          {filter?.[`${pageNumber}`].map((value, index) => {
+            return (
+              <SubCategory
+                key={index}
+                info={value}
+                productsMore={(val) => {
+                  moreProducts(val);
+                }}
               />
-            </div>
+            );
+          })}
+        </div>
+
+        <div className="flex justify-end w-[90%] mt-[50px]">
+          <PageNumbering
+            pageTotal={totalPage}
+            pageNumberSelect={(value) => {
+              selectPageNumber(value);
+            }}
+          />
+        </div>
       </section>
     </>
   );

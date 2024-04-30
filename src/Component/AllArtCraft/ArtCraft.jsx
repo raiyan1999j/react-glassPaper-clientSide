@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import CraftItems from '../Home/CraftItems';
 import PageNumbering from '../Home/PageNumbering';
+import {Fade} from 'react-awesome-reveal';
 
 export default function ArtCraft(){
     const [filter,setFilter] = useState();
@@ -47,7 +48,11 @@ export default function ArtCraft(){
     return(
         <>
             <section className="w-[1200px] mx-auto my-[50px]">
-                <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 text-center">All available craft & arts</h2>
+                <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 text-center">
+                <Fade delay={1e2} cascade damping={1e-1}>
+                All available craft & arts
+                </Fade>
+                </h2>
 
                 <div className="w-[80%] mx-auto grid grid-cols-3 gap-x-6 gap-y-6">
                 {

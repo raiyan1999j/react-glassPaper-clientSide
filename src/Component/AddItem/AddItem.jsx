@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { InfoProvider } from "../../ContextProvider/ContextProvider";
 import commonData from "../../CommonData/CommonData";
+import {Fade} from 'react-awesome-reveal';
 
 export default function AddItem() {
   const {userData} = useContext(InfoProvider);
@@ -108,7 +109,11 @@ export default function AddItem() {
         transition:Bounce
       />
       <section className="w-[1200px] mx-auto">
-      <h2 className="text-center font-mono text-2xl font-bold my-[50px] underline">Add Your Craft Item</h2>
+      <h2 className="text-center font-mono text-2xl font-bold my-[50px] underline">
+      <Fade delay={1e2} cascade damping={1e-1}>
+      Add Your Craft Item
+      </Fade>
+      </h2>
         <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px]">
           <div className="border w-full h-[350px] flex justify-center items-center relative">
             <label

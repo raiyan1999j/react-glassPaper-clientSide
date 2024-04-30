@@ -1,3 +1,5 @@
+import { Typewriter } from 'react-simple-typewriter'
+
 export default function CraftItems({ info,productsMore }) {
     const {imgURL,price,rating,item,subItem,name,_id} = info;
 
@@ -15,7 +17,9 @@ export default function CraftItems({ info,productsMore }) {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title capitalize">{item}</h2>
+          <h2 className="card-title capitalize">
+            <Typewriter words={[`${item}`]}loop={5} delaySpeed={1000}/>
+          </h2>
           <p className="badge badge-secondary">{subItem}</p>
           <div className="flex flex-row justify-between">
             <div>
