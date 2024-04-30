@@ -11,6 +11,7 @@ import PrivetRoute from './PrivetRoute/PrivetRoute.jsx'
 import AddItem from './Component/AddItem/AddItem.jsx'
 import Details from './DetailsView/Details.jsx'
 import MyItem from './Component/MyItem/MyItem.jsx'
+import UpdatePage from './Component/UpdatePage/UpdatePage.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -46,6 +47,17 @@ const router = createBrowserRouter([
       {
         path:'/myItem',
         element:<PrivetRoute><MyItem/></PrivetRoute>
+      },
+      {
+        path:'/getSpecific/:id',
+        element:<PrivetRoute><UpdatePage/></PrivetRoute>,
+        loader:async ({params})=>{
+          const step1 = await fetch(`http://localhost:5000/getSpecific/${params.id}`);
+
+          const step2 = await step1.json();
+
+          return step2;
+        }
       }
     ]
   }

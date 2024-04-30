@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function ItemsCard({ data }) {
+    const navigate = useNavigate();
   const { imgURL, price, item, rating, custom, stock, _id, subItem } = data;
 
-  console.log(data);
+  const updateData=()=>{
+    navigate(`/getSpecific/${_id}`)
+  }
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl shadow-black">
@@ -43,7 +48,7 @@ export default function ItemsCard({ data }) {
             <span className={`badge ${stock=="In stock"?"badge-neutral":"badge-error"} ml-1`}>{stock}</span>
           </div>
           <div className="flex flex-row justify-between mt-4">
-            <span className="badge badge-success capitalize text-white transition-all ease-in duration-300 hover:bg-transparent border border-success hover:text-success hover:cursor-pointer">update</span>
+            <span className="badge badge-success capitalize text-white transition-all ease-in duration-300 hover:bg-transparent border border-success hover:text-success hover:cursor-pointer" onClick={updateData}>update</span>
             <span className="badge badge-error capitalize text-white transition-all duration-300 ease-in hover:bg-transparent border border-error hover:cursor-pointer hover:text-error">
                 delete
             </span>
