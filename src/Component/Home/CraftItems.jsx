@@ -17,7 +17,7 @@ export default function CraftItems({ info,viewDetails }) {
         <div className="card-body">
           <h2 className="card-title capitalize">{item}</h2>
           <p className="badge badge-secondary">{subItem}</p>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between smallest:">
             <div>
                 <p className="font-bold text-sm underline decoration-lime-500 underline-offset-4 capitalize">Name</p>
                 <p className="text-xl font-mono text-gray-500 font-semibold">{name}</p>

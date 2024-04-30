@@ -109,9 +109,9 @@ export default function AddItem() {
         theme="light"
         transition:Bounce
       />
-      <section className="w-[1200px] mx-auto">
+      <section className="w-[1200px] mx-auto smallest:w-[476px]">
       <h2 className="text-center font-mono text-2xl font-bold my-[50px] underline">Update Your Craft Item</h2>
-        <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px]">
+        <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] smallest:grid-cols-1">
           <div className="border w-full h-[350px] flex justify-center items-center relative">
             <label
               id="imgURL"

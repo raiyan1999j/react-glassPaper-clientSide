@@ -31,8 +31,8 @@ export default function App() {
             : "bg-gradient-to-tr from-slate-900 to-slate-500"
         }  flex justify-center items-center`}
       >
-        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center">
-          <div className="w-[10%] flex flex-row">
+        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center smallest:justify-between smallest:w-[476px]">
+          <div className="w-[10%] flex flex-row smallest:w-[40%]">
             <div>
               <IoFlower />
             </div>
@@ -40,7 +40,7 @@ export default function App() {
               <img src="https://i.postimg.cc/3RcVWFsz/logo.png" alt="logoImg" />
             </div>
           </div>
-          <div className="w-[70%]">
+          <div className="w-[70%] smallest:w-0 smallest:hidden">
             <ul className="flex flex-row justify-around font-mono capitalize">
               <li>
                 <NavLink to="/home">Home</NavLink>
@@ -56,7 +56,7 @@ export default function App() {
               </li>
             </ul>
           </div>
-          <div className="w-[20%] flex flex-row justify-between">
+          <div className="w-[20%] flex flex-row justify-between smallest:w-[50%]">
             <div className="flex flex-row justify-between">
             {
                 loading?
@@ -139,13 +139,32 @@ export default function App() {
             </div>
           </div>
         </nav>
-      </section>
 
-      <section className="w-[1200px] mx-auto">
+        
+
+      </section>
+      <div className="hidden smallest:block w-full mt-[20px] small:block">
+        <ul className="flex flex-row justify-around font-mono capitalize">
+              <li className="badge badge-neutral">
+                <NavLink to="/home">Home</NavLink>
+              </li>
+              <li className="badge badge-neutral">
+                <NavLink to="/artCraft">art & crafts</NavLink>
+              </li>
+              <li className="badge badge-neutral">
+                <NavLink to="/addItem">Add Items</NavLink>
+              </li>
+              <li className="badge badge-neutral">
+                <NavLink to="/myItem">My items</NavLink>
+              </li>
+            </ul>
+        </div>
+
+      <section className="w-[1200px] mx-auto smallest:w-[476px] small:w-[668px]">
         <Outlet />
       </section>
 
-      <section className="mt-[100px] bg-footerImg bg-no-repeat bg-cover">
+      <section className="mt-[100px] bg-footerImg bg-no-repeat bg-cover ">
         <Footer/>
       </section>
     </>

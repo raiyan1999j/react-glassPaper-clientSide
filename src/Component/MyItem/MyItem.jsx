@@ -86,8 +86,8 @@ export default function MyItem() {
   }
   return (
     <>
-      <section className="w-[1200px] mx-auto my-[50px]">
-        <div className="w-full grid grid-cols-[20%_80%] gap-x-4">
+      <section className="w-[1200px] mx-auto my-[50px] smallest:w-[476px]">
+        <div className="w-full grid grid-cols-[20%_80%] gap-x-4 smallest:grid-cols-1">
           <div>
             <div className="w-full border border-purple-500 rounded-lg">
               <form onClick={formHandler}>
@@ -100,7 +100,7 @@ export default function MyItem() {
               </form>
             </div>
           </div>
-          <div className="w-full grid grid-cols-3 gap-x-4 gap-y-8">
+          <div className="w-full mt-[50px] grid grid-cols-3 gap-x-4 gap-y-8 smallest:grid-cols-1">
             {
               filter==""?info.map((value,index)=>{
                 return (

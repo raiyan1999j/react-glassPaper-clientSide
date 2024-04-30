@@ -4,8 +4,8 @@ export default function Details(){
     const {item,subItem,description,custom,email,imgURL,name,price,rating,stock} = useLoaderData();
     return(
         <>
-        <section className="w-[1200px] mx-auto my-[50px]">
-            <div className="w-full grid grid-cols-[40%_60%] gap-x-8 items-center">
+        <section className="w-[1200px] mx-auto my-[50px] smallest:w-[576px]">
+            <div className="w-full grid grid-cols-[40%_60%] gap-x-8 items-center smallest:grid-cols-1">
                 <div className="w-full">
                     <div className="h-[350px] w-full">
                         <img src={imgURL} alt="coverImg" className="h-full w-full object-cover" />
