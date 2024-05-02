@@ -61,22 +61,20 @@ export default function ContextProvider({children}){
         await signInWithPopup(fireAuth,provider)
         .then(async (userInfo)=>{
             const imageRef = ref(storage,`image/${userInfo.user.email}`);
-
+            setLoading(true);
+            
             await fetch(userInfo?.user?.photoURL)
             .then(response=>response.blob())
             .then(imgData=>uploadBytes(imageRef,imgData))
-            
-            await getDownloadURL(storage,`image/${userInfo.user.email}`)
-            .then((imgUrl)=>{
-                updateProfile(userInfo.user,{
-                    displayName: userInfo.user.displayName,
-                    photoURL: imgUrl
+            .then(()=>{getDownloadURL(storage,`image/${userInfo.user.email}`)})
+            .then(async(imgUrl)=>{
+                await updateProfile(userInfo.user,{
+                    displayName:userInfo.user.displayName,
+                    photoURL:imgUrl
                 })
             })
-
+            setRoutePage(true);
             setUser(userInfo.user);
-            setLoading(true);
-            setRoutePage(true)
         })
     }
 

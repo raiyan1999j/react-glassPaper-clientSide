@@ -39,7 +39,11 @@ export default function Login() {
     }
     useEffect(()=>{
       if(routePage){
-        navigate(location.state==""?'/home':location.state)
+        toast('successfully log in')
+        setTimeout(()=>{
+          navigate(location.state==null?'/home':location.state)
+        },2000)
+        
       }
     },[routePage])
     return (
