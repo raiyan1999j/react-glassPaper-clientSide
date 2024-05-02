@@ -38,9 +38,10 @@ const categoryInfo = [
 export default function Home() {
   const [container, setContainer] = useState([]);
   const [filter, setFilter] = useState();
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumbering, setPageNumbering] = useState({"craft":0,"subItem":0});
   const [totalPage, setTotal] = useState();
   const navigate = useNavigate();
+  const [loading,setLoading] = useState({craftLoader:true,subItemLoader:true});
 
   useEffect(() => {
     async function loadData() {
@@ -48,6 +49,7 @@ export default function Home() {
       const step2 = await step1.json();
 
       setContainer(step2);
+      setLoading({craftLoader:true,subItemLoader:true});
       restructure(step2);
     }
     loadData();
@@ -66,12 +68,25 @@ export default function Home() {
 
     setFilter(array);
     setTotal(arrayLen);
+    setLoading({craftLoader:false,subItemLoader:false})
   };
 
   const selectPageNumber = (value) => {
-    let reValue = value - 1;
 
-    setPageNumber(reValue);
+    let reSubItem = value.subItem==undefined?0:value.subItem - 1;
+    let reCraft = value.craft==undefined?0:value.craft - 1;
+    let craftCon= value.craftloader==undefined?false:true;
+    let subItemCon= value.subItemloader==undefined?false:true;
+    
+
+    setPageNumbering({subItem:reSubItem,craft:reCraft});
+    setLoading({craftLoader:craftCon,subItemLoader:subItemCon})
+
+    setTimeout(()=>{
+      setLoading({craftLoader:false,subItemLoader:false})
+    },3000)
+
+    console.log(craftCon,subItemCon)
   };
   const detailView = (value) => {
     navigate(`/details/${value}`);
@@ -126,7 +141,12 @@ export default function Home() {
           
         </h2>
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto smallest:grid-cols-1 small:grid-cols-2">
-          {filter?.[`${pageNumber}`].map((value, index) => {
+        {
+          loading.craftLoader?(<div className="translate-x-[150%]">
+          <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-sky-300 to-gray-100"></span>
+          </div>):<>
+        
+          {filter?.[`${pageNumbering.craft}`].map((value, index) => {
             return (
               <CraftItems
                 key={index}
@@ -137,10 +157,13 @@ export default function Home() {
               />
             );
           })}
+          </>
+        }
         </div>
         <div className="flex justify-end w-[90%] mt-[50px]">
           <PageNumbering
             pageTotal={totalPage}
+            content ="craft"
             pageNumberSelect={(value) => {
               selectPageNumber(value);
             }}
@@ -157,7 +180,13 @@ export default function Home() {
         </h2>
 
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto smallest:grid-cols-1 small:grid-cols-2">
-          {filter?.[`${pageNumber}`].map((value, index) => {
+        {
+          loading.subItemLoader?(
+            <div className="translate-x-[150%]">
+          <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-sky-300 to-gray-100"></span>
+          </div>
+          ):<>
+          {filter?.[`${pageNumbering.subItem}`].map((value, index) => {
             return (
               <SubCategory
                 key={index}
@@ -168,11 +197,15 @@ export default function Home() {
               />
             );
           })}
+          </>
+        }
+          
         </div>
 
         <div className="flex justify-end w-[90%] mt-[50px]">
           <PageNumbering
             pageTotal={totalPage}
+            content="subItem"
             pageNumberSelect={(value) => {
               selectPageNumber(value);
             }}
