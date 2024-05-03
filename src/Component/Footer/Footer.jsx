@@ -1,3 +1,4 @@
+import { Flip } from "react-awesome-reveal";
 import { FaFacebookSquare,FaLinkedin,FaGithubSquare } from "react-icons/fa";
 
 export default function Footer() {
@@ -11,25 +12,18 @@ export default function Footer() {
 
             <ul className="mt-6 text-bg text-slate-800 font-serif font-medium list-disc">
               <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">
-                We offer suitable homes at affordable prices for single
-                families.
+              Discover our incredibly generous product line, unlike anything else on the market.
               </li>
               <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">
-                We prioritize students' needs by offering residences with
-                affordable rent.
+              Be your own boss! Sell your products with our program.
               </li>
               <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">
-                Our senior citizens are our pride; therefore, we provide
-                communities where they can lead healthy lives.
+              Your profile is your shopping hub. Discover new products and reorder with a single click.
               </li>
               <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">
-                Discover our vacation destinations for unforgettable moments.
+              Unleash your creativity! Customize your existing products directly from your profile.
               </li>
-              <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">We specialize in both selling and renting apartments.</li>
-              <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">
-                Enjoy townhouse living away from busy roads with our exclusive
-                offerings.
-              </li>
+              <li className="w-[80%] mb-3 ml-3 hover:underline underline-offset-4 decoration-blue-500 hover:cursor-pointer">Refine your vision! Access and personalize your product directly in your profile.</li>
             </ul>
           </div>
           <div>
@@ -54,21 +48,27 @@ export default function Footer() {
           <div>
             <h3 className="font-mono font-bold text-gray-800 text-2xl underline underline-offset-8 decoration-blue-500">Follow us</h3>
             <div className="flex flex-row justify-start mt-3">
+                <Flip>
                 <div className="hover:cursor-pointer">
                 <a href="https://www.facebook.com/raiyan.raiyan.31/" target="blank">
                 <FaFacebookSquare className="text-4xl text-blue-600"/>
                 </a>
                 </div>
+                </Flip>
+                <Flip>
                 <div className="mx-3 hover:cursor-pointer">
                 <a href="https://www.linkedin.com/in/raiyan-khan-36ab501a4/" target="blank">
                 <FaLinkedin className="text-4xl text-sky-950"/>
                 </a>
                 </div>
+                </Flip>
+                <Flip>
                 <div className="hover:cursor-pointer">
                 <a href="https://github.com/raiyan1999j" target="blank">
                 <FaGithubSquare className="text-4xl text-purple-600"/>
                 </a>
                 </div>
+                </Flip>
             </div>
           </div>
         </div>

@@ -1,29 +1,39 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoFlower } from "react-icons/io5";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { InfoProvider } from "./ContextProvider/ContextProvider";
+import { IoMenu } from "react-icons/io5";
+import { ImCross } from "react-icons/im";
+import {Fade,Flip} from 'react-awesome-reveal';
+import { FaHome } from "react-icons/fa";
+import "animate.css";
 import Footer from "./Component/Footer/Footer";
+import { IoIosColorPalette, IoMdOptions } from "react-icons/io";
+import { GrClearOption } from "react-icons/gr";
 
 export default function App() {
-  const { changeTheme, themeMode, userData, logoutUser,loading } = useContext(InfoProvider);
+  const { changeTheme, themeMode, userData, logoutUser, loading } =
+    useContext(InfoProvider);
   const navigate = useNavigate();
+  const [menu, setMenu] = useState(true);
 
   const loginPage = () => {
     navigate("/login");
   };
 
   const logoutPage = () => {
-    logoutUser()
+    logoutUser();
   };
   const registerPage = () => {
     navigate("/registration");
   };
 
-  useEffect(()=>{
-    navigate('/home')
-  },[])
+  useEffect(() => {
+    navigate("/home");
+  }, []);
   return (
     <>
+    
       <section
         className={`h-[80px] w-full ${
           themeMode
@@ -33,6 +43,18 @@ export default function App() {
       >
         <nav className="w-[1200px] mx-auto text-white flex flex-row items-center smallest:justify-between smallest:w-[476px]">
           <div className="w-[10%] flex flex-row smallest:w-[40%]">
+            <div
+              className="translate-y-[25%] hidden smallest:block small:block"
+              onClick={() => {
+                setMenu(!menu);
+              }}
+            >
+              {menu ? (
+                <ImCross className="text-4xl animate__animated animate__flipInY" />
+              ) : (
+                <IoMenu className="text-4xl animate__animated animate__flipInY" />
+              )}
+            </div>
             <div>
               <IoFlower />
             </div>
@@ -58,55 +80,54 @@ export default function App() {
           </div>
           <div className="w-[20%] flex flex-row justify-between smallest:w-[50%]">
             <div className="flex flex-row justify-between">
-            {
-                loading?
+              {loading ? (
                 <div>
-                <span className="loading loading-ring loading-lg"></span>
-                </div>:
-                <>
-                {userData ? (
-                <div className="dropdown dropdown-hover">
-                  <div tabIndex={0} role="button" className="m-1">
-                    <img
-                      src={userData?.photoURL}
-                      alt="userImage"
-                      className="h-[45px] w-[45px] rounded-full object-cover"
-                    />
-                  </div>
-                  <ul
-                    tabIndex={0}
-                    className={`dropdown-content z-[1] menu p-2 shadow ${
-                      themeMode
-                        ? "bg-gradient-to-tr from-purple-600 to-purple-300"
-                        : "bg-gradient-to-tr from-slate-900 to-slate-500"
-                    } rounded-box w-52`}
-                  >
-                    <li className="text-base font-serif font-semibold tracking-[0.2rem]">
-                      {userData.displayName}
-                    </li>
-                    <li className="mt-4">
-                      <button
-                        className="btn btn-outline btn-warning"
-                        onClick={logoutPage}
-                      >
-                        Log out
-                      </button>
-                    </li>
-                  </ul>
+                  <span className="loading loading-ring loading-lg"></span>
                 </div>
               ) : (
                 <>
-                  <button className="mr-4 btn" onClick={loginPage}>
-                    Login
-                  </button>
-                  <button className="btn" onClick={registerPage}>
-                    Register
-                  </button>
+                  {userData ? (
+                    <div className="dropdown dropdown-hover">
+                      <div tabIndex={0} role="button" className="m-1">
+                        <img
+                          src={userData?.photoURL}
+                          alt="userImage"
+                          className="h-[45px] w-[45px] rounded-full object-cover"
+                        />
+                      </div>
+                      <ul
+                        tabIndex={0}
+                        className={`dropdown-content z-[1] menu p-2 shadow ${
+                          themeMode
+                            ? "bg-gradient-to-tr from-purple-600 to-purple-300"
+                            : "bg-gradient-to-tr from-slate-900 to-slate-500"
+                        } rounded-box w-52`}
+                      >
+                        <li className="text-base font-serif font-semibold tracking-[0.2rem]">
+                          {userData.displayName}
+                        </li>
+                        <li className="mt-4">
+                          <button
+                            className="btn btn-outline btn-warning"
+                            onClick={logoutPage}
+                          >
+                            Log out
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <>
+                      <button className="mr-4 btn" onClick={loginPage}>
+                        Login
+                      </button>
+                      <button className="btn" onClick={registerPage}>
+                        Register
+                      </button>
+                    </>
+                  )}
                 </>
               )}
-              </>
-            }
-              
             </div>
             <div>
               <label className="swap swap-rotate w-[10px]">
@@ -139,33 +160,48 @@ export default function App() {
             </div>
           </div>
         </nav>
+      </section>
+        
+        {
+          menu?<>
+          <Fade cascade direction="left">
+      <ul className="hidden smallest:flex w-[50%]  flex-col justify-between">
+        <li className="text-center bg-gradient-to-tr from-purple-500 to-purple-300 py-4 text-white font-semibold text-bg capitalize font-serif tracking-widest relative">
+          <span cascade className="absolute top-2 right-5 h-[40px] w-[40px] rounded-full shadow-xl shadow-black/60 flex justify-center items-center">
+          <FaHome  className="text-xl text-purple-600"/>
+          </span>
+          <NavLink to="/home">Home</NavLink>
+        </li>
+        <li className="text-center bg-gradient-to-tr from-purple-500 to-purple-300 py-4 text-white font-semibold text-bg capitalize font-serif tracking-widest relative">
+          <span cascade className="absolute top-2 right-5 h-[40px] w-[40px] rounded-full shadow-xl shadow-black/60 flex justify-center items-center">
+          <IoIosColorPalette  className="text-xl text-purple-600"/>
+          </span>
+          <NavLink to="/artCraft">art & crafts</NavLink>
+        </li>
+        <li className="text-center bg-gradient-to-tr from-purple-500 to-purple-300 py-4 text-white font-semibold text-bg capitalize font-serif tracking-widest relative">
+          <span cascade className="absolute top-2 right-5 h-[40px] w-[40px] rounded-full shadow-xl shadow-black/60 flex justify-center items-center">
+          <IoMdOptions className="text-xl text-purple-600"/>
+          </span>
+          <NavLink to="/addItem">Add Items</NavLink>
+        </li>
+        <li className="text-center bg-gradient-to-tr from-purple-500 to-purple-300 py-4 text-white font-semibold text-bg capitalize font-serif tracking-widest relative">
+          <span cascade className="absolute top-2 right-5 h-[40px] w-[40px] rounded-full shadow-xl shadow-black/60 flex justify-center items-center">
+          <GrClearOption  className="text-xl text-purple-600"/>
+          </span>
+          <NavLink to="/myItem">My items</NavLink>
+        </li>
+      </ul>
+      </Fade>
+          </>:""
+        }
 
         
-
-      </section>
-      <div className="hidden smallest:block w-full mt-[20px] small:block">
-        <ul className="flex flex-row justify-around font-mono capitalize">
-              <li className="badge badge-neutral">
-                <NavLink to="/home">Home</NavLink>
-              </li>
-              <li className="badge badge-neutral">
-                <NavLink to="/artCraft">art & crafts</NavLink>
-              </li>
-              <li className="badge badge-neutral">
-                <NavLink to="/addItem">Add Items</NavLink>
-              </li>
-              <li className="badge badge-neutral">
-                <NavLink to="/myItem">My items</NavLink>
-              </li>
-            </ul>
-        </div>
-
-      <section className="w-[1200px] mx-auto smallest:w-[476px] small:w-[668px]">
+      <section className={`w-full mx-auto smallest:w-[476px] small:w-[668px] transition-all ease-in duration-500 pb-[100px]  ${themeMode?"bg-transparent":"bg-gradient-to-b from-blue-950 to-slate-600"}`}>
         <Outlet />
       </section>
 
-      <section className="mt-[100px] bg-footerImg bg-no-repeat bg-cover ">
-        <Footer/>
+      <section className="bg-footerImg bg-no-repeat bg-cover ">
+        <Footer />
       </section>
     </>
   );

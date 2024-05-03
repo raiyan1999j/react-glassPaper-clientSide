@@ -1,14 +1,16 @@
-import {useEffect,useState} from 'react';
+import {useContext, useEffect,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import CraftItems from '../Home/CraftItems';
 import PageNumbering from '../Home/PageNumbering';
 import {Fade} from 'react-awesome-reveal';
+import { InfoProvider } from '../../ContextProvider/ContextProvider';
 
 export default function ArtCraft(){
     const [filter,setFilter] = useState();
     const [pageNumber,setPageNumber] = useState(0);
     const [totalPage,setTotal] = useState();
     const navigate = useNavigate();
+    const {themeMode} = useContext(InfoProvider);
 
     useEffect(()=>{
         async function loadData(){
@@ -47,8 +49,8 @@ export default function ArtCraft(){
       }
     return(
         <>
-            <section className="w-[1200px] mx-auto my-[50px] smallest:w-[476px]">
-                <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 text-center">
+            <section className="w-[1200px] mx-auto  smallest:w-[476px] pt-[100px]">
+                <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 text-center ${themeMode?"text-blue-950":"text-white"}`}>
                 <Fade delay={1e2} cascade damping={1e-1}>
                 All available craft & arts
                 </Fade>

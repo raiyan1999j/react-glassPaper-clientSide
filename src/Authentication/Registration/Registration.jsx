@@ -216,7 +216,7 @@ export default function Registration() {
             <p className="mt-10 text-center text-sm text-gray-500 ">
               <button
                 onClick={loginPage}
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 capitalize"
+                className={`font-semibold leading-6  capitalize ${themeMode?"text-indigo-600 hover:text-indigo-500":"text-gray-950 hover:text-gray-500"}`}
               >
                 Go back to log in
               </button>

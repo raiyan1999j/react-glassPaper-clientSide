@@ -71,7 +71,7 @@ export default function Login() {
           <div className={`sm:mx-auto sm:w-full sm:max-w-md  flex flex-row py-4 justify-center items-center rounded-t-lg ${themeMode?"bg-gradient-to-tr from-purple-600 to-purple-300":"bg-gradient-to-tr from-slate-900 to-slate-500"}`}>
           <IoFlower className="text-white text-5xl"/>
             <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              <img src="https://i.postimg.cc/BvTpFcdX/login.png" alt="logoImg" />
+              <img src="https://ibb.co/PtrggXK" alt="logoImg" />
             </h2>
           </div>
   
@@ -176,7 +176,7 @@ export default function Login() {
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{' '}
-              <button onClick={registerPage} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <button onClick={registerPage} className={`font-semibold leading-6  ${themeMode?"text-indigo-600 hover:text-indigo-500":"text-gray-950 hover:text-gray-500"}`} >
                 Register now
               </button>
             </p>

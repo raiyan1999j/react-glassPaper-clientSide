@@ -2,12 +2,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CraftItems from "./CraftItems";
 import { useNavigate } from "react-router-dom";
 import PageNumbering from "./PageNumbering";
 import SubCategory from "./SubCategory";
 import { Fade } from "react-awesome-reveal";
+import { InfoProvider } from "../../ContextProvider/ContextProvider";
 
 const categoryInfo = [
   {
@@ -42,6 +43,7 @@ export default function Home() {
   const [totalPage, setTotal] = useState();
   const navigate = useNavigate();
   const [loading,setLoading] = useState({craftLoader:true,subItemLoader:true});
+  const {themeMode} = useContext(InfoProvider);
 
   useEffect(() => {
     async function loadData() {
@@ -97,7 +99,7 @@ export default function Home() {
   };
   return (
     <>
-      <section className="w-[1200px] mx-auto mt-[50px] smallest:w-[476px] small:w-[668]">
+      <section className="w-[1200px] mx-auto smallest:w-[476px] small:w-[668] pt-[50px]">
         <div className="w-[1000px] mx-auto smallest:w-[476px] small:w-[668px]">
           <Swiper
             autoplay={{
@@ -134,11 +136,10 @@ export default function Home() {
         </div>
       </section>
       <section className="w-[1200px] mx-auto my-[50px] smallest:w-[476px] small:w-[668]">
-        <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">
+        <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
         <Fade delay={1e1} cascade damping={1e-1}>
         Craft items
         </Fade>
-          
         </h2>
         <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto smallest:grid-cols-1 small:grid-cols-2">
         {
@@ -171,8 +172,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <h2 className="text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10">
+      <section className="w-[1200px] mx-auto">
+        <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
           
           <Fade delay={1e1} cascade damping={1e-1}>
           Some Items you may check out
