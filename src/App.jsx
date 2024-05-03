@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { IoFlower } from "react-icons/io5";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { InfoProvider } from "./ContextProvider/ContextProvider";
 import { IoMenu } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
@@ -15,6 +15,7 @@ export default function App() {
   const { changeTheme, themeMode, userData, logoutUser, loading } =
     useContext(InfoProvider);
   const navigate = useNavigate();
+  const location = useLocation();
   const [menu, setMenu] = useState(true);
 
   const loginPage = () => {
@@ -27,6 +28,13 @@ export default function App() {
   const registerPage = () => {
     navigate("/registration");
   };
+
+  useEffect(()=>{
+    const array = location.pathname.split("/");
+    const string = array.join("-");
+
+    document.title = `glassPaper ${string}`;
+  },[location])
 
   useEffect(() => {
     navigate("/home");
@@ -97,7 +105,7 @@ export default function App() {
                       </div>
                       <ul
                         tabIndex={0}
-                        className={`dropdown-content z-[1] menu p-2 shadow ${
+                        className={`dropdown-content z-20 menu p-2 shadow ${
                           themeMode
                             ? "bg-gradient-to-tr from-purple-600 to-purple-300"
                             : "bg-gradient-to-tr from-slate-900 to-slate-500"
@@ -165,7 +173,7 @@ export default function App() {
         {
           menu?<>
           <Fade cascade direction="left">
-      <ul className="hidden smallest:flex w-[50%]  flex-col justify-between">
+      <ul className="hidden smallest:flex w-[50%]  flex-col justify-between fixed top-[80px] z-50">
         <li className="text-center bg-gradient-to-tr from-purple-500 to-purple-300 py-4 text-white font-semibold text-bg capitalize font-serif tracking-widest relative">
           <span cascade className="absolute top-2 right-5 h-[40px] w-[40px] rounded-full shadow-xl shadow-black/60 flex justify-center items-center">
           <FaHome  className="text-xl text-purple-600"/>
@@ -196,11 +204,11 @@ export default function App() {
         }
 
         
-      <section className={`w-full mx-auto smallest:w-[476px] small:w-[668px] transition-all ease-in duration-500 pb-[100px]  ${themeMode?"bg-transparent":"bg-gradient-to-b from-blue-950 to-slate-600"}`}>
+      <section className={`w-full mx-auto pb-[100px]  ${themeMode?"bg-transparent":"bg-gradient-to-b from-blue-950 to-slate-600"}`}>
         <Outlet />
       </section>
 
-      <section className="bg-footerImg bg-no-repeat bg-cover ">
+      <section className="bg-footerImg bg-no-repeat bg-cover">
         <Footer />
       </section>
     </>

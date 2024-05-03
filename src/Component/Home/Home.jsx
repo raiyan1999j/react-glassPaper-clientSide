@@ -172,7 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-[1200px] mx-auto">
+      <section className="w-[1200px] mx-auto smallest:w-[476px]">
         <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
           
           <Fade delay={1e1} cascade damping={1e-1}>

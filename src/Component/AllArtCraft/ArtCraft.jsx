@@ -7,8 +7,9 @@ import { InfoProvider } from '../../ContextProvider/ContextProvider';
 
 export default function ArtCraft(){
     const [filter,setFilter] = useState();
-    const [pageNumber,setPageNumber] = useState(0);
+    const [pageNumber,setPageNumber] = useState({allCraft:0});
     const [totalPage,setTotal] = useState();
+    const [loader,setLoader] = useState({allCraftLoader:true});
     const navigate = useNavigate();
     const {themeMode} = useContext(InfoProvider);
 
@@ -16,7 +17,9 @@ export default function ArtCraft(){
         async function loadData(){
           const step1 = await fetch('http://localhost:5000/getItems');
           const step2 = await step1.json();
-    
+          
+          
+          setLoader({allCraftLoader:true})
           restructure(step2);
         }
         loadData();
@@ -24,9 +27,20 @@ export default function ArtCraft(){
       },[]);
 
       const selectPageNumber=(value)=>{
-        let reValue = value - 1;
+        // let reValue = value - 1;
     
-        setPageNumber(reValue);
+        // setPageNumber(reValue);
+
+        const craftNum = value.allCraft==undefined? 0: value.allCraft - 1;
+        const craftCon = value.allCraftloader==undefined? false : true;
+
+        setLoader({allCraftLoader:craftCon})
+
+        setPageNumber({allCraft:craftNum})
+
+        setTimeout(()=>{
+          setLoader({allCraftLoader:false})
+        },2000)
       }
 
       const detailView=(value)=>{
@@ -46,10 +60,16 @@ export default function ArtCraft(){
     
         setFilter(array);
         setTotal(arrayLen)
+        setLoader({allCraftLoader:false})
       }
     return(
         <>
-            <section className="w-[1200px] mx-auto  smallest:w-[476px] pt-[100px]">
+        {
+          loader.allCraftLoader?
+          <div className='w-full h-screen flex justify-center items-center'>
+          <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-blue-600 to-gray-400"></span>
+          </div>:
+          <section className="w-[1200px] mx-auto  smallest:w-[476px] pt-[100px]">
                 <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 text-center ${themeMode?"text-blue-950":"text-white"}`}>
                 <Fade delay={1e2} cascade damping={1e-1}>
                 All available craft & arts
@@ -58,7 +78,7 @@ export default function ArtCraft(){
 
                 <div className="w-[80%] mx-auto grid grid-cols-3 gap-x-6 gap-y-6 smallest:grid-cols-1">
                 {
-                filter?.[`${pageNumber}`].map((value,index)=>{
+                filter?.[`${pageNumber.allCraft}`].map((value,index)=>{
                   return <CraftItems
                     key={index}
                     info={value}
@@ -67,13 +87,16 @@ export default function ArtCraft(){
                 })
               }
                 </div>
-                <div className="flex justify-end w-[90%] mt-[50px]">
+                
+            </section>
+        }
+        <div className="flex justify-end w-[90%] mt-[50px]">
               <PageNumbering 
               pageTotal={totalPage}
+              content="allCraft"
               pageNumberSelect={(value)=>{selectPageNumber(value)}}
               />
             </div>  
-            </section>
         </>
     )
 }
