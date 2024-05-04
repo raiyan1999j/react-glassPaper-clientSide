@@ -69,7 +69,7 @@ export default function ArtCraft(){
           <div className='w-full h-screen flex justify-center items-center'>
           <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-blue-600 to-gray-400"></span>
           </div>:
-          <section className="w-[1200px] mx-auto pt-[100px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
+          <section className="w-[1200px] mx-auto pt-[100px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px] laptop:w-[1024px]">
                 <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 text-center ${themeMode?"text-blue-950":"text-white"}`}>
                 
                 <Typewriter words={["All available craft & arts"]} typeSpeed={180}/>

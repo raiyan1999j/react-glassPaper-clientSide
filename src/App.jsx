@@ -44,13 +44,13 @@ export default function App() {
   return (
     <>
       <section
-        className={`h-[80px] w-full tablet:w-screen ${
+        className={`h-[80px] w-full ${
           themeMode
             ? "bg-gradient-to-tr from-purple-600 to-purple-300"
             : "bg-gradient-to-tr from-slate-900 to-slate-500"
         }  flex justify-center items-center`}
       >
-        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden mobileL:hidden tablet:w-[768px]">
+        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden mobileL:hidden tablet:w-[768px] laptop:w-[1024px]">
           <div className="w-[10%] flex flex-row">
             <div>
               <IoFlower />
@@ -58,8 +58,8 @@ export default function App() {
             <div>
               <img src="https://i.postimg.cc/3RcVWFsz/logo.png" alt="logoImg" />
             </div>
-          </div>
-          <div className="w-[60%]">
+          </div> 
+          <div className="w-[70%] tablet:w-[60%] laptop:w-[65%]">
             <ul className="flex flex-row justify-around font-mono capitalize">
               <li>
                 <NavLink to="/home">Home</NavLink>
@@ -75,8 +75,8 @@ export default function App() {
               </li>
             </ul>
           </div>
-          <div className="w-[30%] flex flex-row justify-between tablet:justify-normal">
-            <div className="flex flex-row justify-start">
+          <div className="w-[20%] flex flex-row justify-between tablet:justify-normal">
+            <div className="flex flex-row justify-between">
               {loading ? (
                 <div>
                   <span className="loading loading-ring loading-lg"></span>
@@ -126,8 +126,8 @@ export default function App() {
                 </>
               )}
             </div>
-            <div className="ml-[26px]">
-              <label className="swap swap-rotate w-[10px]">
+            <div>
+              <label className="swap swap-rotate w-[10px] tablet:ml-[26px]">
                 {/* this hidden checkbox controls the state */}
                 <input
                   type="checkbox"

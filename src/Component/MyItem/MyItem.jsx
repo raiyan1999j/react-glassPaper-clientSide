@@ -86,10 +86,10 @@ export default function MyItem() {
   }
   return (
     <>
-      <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
-        <div className="w-full grid grid-cols-[20%_80%] gap-x-4 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-1 tablet:w-[90%] tablet:mx-auto">
+      <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px] laptop:w-[1024px]">
+        <div className="w-full grid grid-cols-[20%_80%] gap-x-4 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-1 tablet:w-[90%] tablet:mx-auto laptop:grid-cols-1 laptop:w-[90%] laptop:mx-auto">
           <div>
-            <div className="w-full border border-purple-500 rounded-lg tablet:w-[40%] tablet:mx-auto">
+            <div className="w-full border border-purple-500 rounded-lg tablet:w-[40%] tablet:mx-auto laptop:w-[30%] laptop:mx-auto">
               <form onClick={formHandler}>
                 <select className="select select-bordered w-full max-w-xs border border-purple-600">
                   <option value="">Customization</option>

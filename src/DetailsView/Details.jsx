@@ -7,8 +7,8 @@ export default function Details(){
     const {themeMode} = useContext(InfoProvider)
     return(
         <>
-        <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
-            <div className="w-full grid grid-cols-[40%_60%] gap-x-8 items-center mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-1 tablet:w-[90%] tablet:mx-auto">
+        <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px] laptop:w-[1024px]">
+            <div className="w-full grid grid-cols-[40%_60%] gap-x-8 items-center mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-1 tablet:w-[90%] tablet:mx-auto laptop:w-[90%] laptop:mx-auto">
                 <div className="w-full">
                     <div className="h-[350px] w-full">
                         <img src={imgURL} alt="coverImg" className="h-full w-full object-cover" />
