@@ -99,8 +99,8 @@ export default function Home() {
   };
   return (
     <>
-      <section className="w-[1200px] mx-auto smallest:w-[476px] small:w-[668] pt-[50px]">
-        <div className="w-[1000px] mx-auto smallest:w-[476px] small:w-[668px]">
+      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px]">
+        <div className="w-[1000px] mx-auto mobileS:w-[280px]">
           <Swiper
             autoplay={{
               delay: 8000,
@@ -122,7 +122,7 @@ export default function Home() {
                         className="object-cover h-full w-full rounded-xl"
                       />
                     </div>
-                    <div className="absolute w-[40%] left-0 top-[50%] py-4 px-2 rounded-r-lg text-white bg-gradient-to-tr from-black to-gray-500 smallest:w-[80%]">
+                    <div className="absolute w-[40%] left-0 top-[50%] py-4 px-2 rounded-r-lg text-white bg-gradient-to-tr from-black to-gray-500 mobileS:h-full mobileS:top-0">
                       <p>
                         {value.description}
                       </p>
@@ -135,15 +135,15 @@ export default function Home() {
           </Swiper>
         </div>
       </section>
-      <section className="w-[1200px] mx-auto my-[50px] smallest:w-[476px] small:w-[668]">
+      <section className="w-[1200px] mx-auto my-[50px] mobileS:w-[320px]">
         <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
         <Fade delay={1e1} cascade damping={1e-1}>
         Craft items
         </Fade>
         </h2>
-        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto smallest:grid-cols-1 small:grid-cols-2">
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto mobileS:grid-cols-1">
         {
-          loading.craftLoader?(<div className="translate-x-[150%]">
+          loading.craftLoader?(<div className="translate-x-[150%] mobileS:translate-x-[50%]">
           <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-sky-300 to-gray-100"></span>
           </div>):<>
         
@@ -172,18 +172,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-[1200px] mx-auto smallest:w-[476px]">
+      <section className="w-[1200px] mx-auto mobileS:w-[320px]">
         <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
           
-          <Fade delay={1e1} cascade damping={1e-1}>
-          Some Items you may check out
+          <Fade cascade>
+          <span>Some Items you</span> <span className="mobileS:block">may check out</span>
           </Fade>
         </h2>
 
-        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto smallest:grid-cols-1 small:grid-cols-2">
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto mobileS:grid-cols-1">
         {
           loading.subItemLoader?(
-            <div className="translate-x-[150%]">
+            <div className="translate-x-[150%] mobileS:translate-x-[50%]">
           <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-sky-300 to-gray-100"></span>
           </div>
           ):<>

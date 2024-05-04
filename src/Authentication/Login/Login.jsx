@@ -71,7 +71,7 @@ export default function Login() {
           <div className={`sm:mx-auto sm:w-full sm:max-w-md  flex flex-row py-4 justify-center items-center rounded-t-lg ${themeMode?"bg-gradient-to-tr from-purple-600 to-purple-300":"bg-gradient-to-tr from-slate-900 to-slate-500"}`}>
           <IoFlower className="text-white text-5xl"/>
             <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              <img src="https://ibb.co/PtrggXK" alt="logoImg" />
+              <img src="https://i.postimg.cc/8zXtq4sr/logo.png" alt="logoImg" />
             </h2>
           </div>
   

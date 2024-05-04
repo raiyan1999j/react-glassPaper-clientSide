@@ -6,9 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { InfoProvider } from "../../ContextProvider/ContextProvider";
 import commonData from "../../CommonData/CommonData";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
 
 export default function AddItem() {
-  const {userData} = useContext(InfoProvider);
+  const {userData,themeMode} = useContext(InfoProvider);
   const {custom,description,email,imgURL,item,name,owner,price,rating,stock,subItem,_id} = useLoaderData();
   const imgPreview = useRef("");
   const formRef = useRef();
@@ -109,9 +110,13 @@ export default function AddItem() {
         theme="light"
         transition:Bounce
       />
-      <section className="w-[1200px] mx-auto smallest:w-[476px]">
-      <h2 className="text-center font-mono text-2xl font-bold my-[50px] underline">Update Your Craft Item</h2>
-        <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] smallest:grid-cols-1">
+      <section className="w-[1200px] mx-auto mobileS:w-[320px]">
+      <h2 className={`text-center font-mono text-2xl font-bold py-[50px] underline ${themeMode?"text-blue-950":"text-white"}`}>
+      <Fade cascade damping={1e-1}>
+      Update Your Craft Item
+      </Fade>
+      </h2>
+        <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] mobileS:grid-cols-1">
           <div className="border w-full h-[350px] flex justify-center items-center relative">
             <label
               id="imgURL"
@@ -148,7 +153,7 @@ export default function AddItem() {
               <div className="grid grid-cols-2 gap-x-6">
                 <div>
                   <div className="label">
-                    <span className="label-text text-xl font-bold">Pick the Main Category</span>
+                    <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Pick the Main Category</span>
                   </div>
                   <select
                     className="select select-bordered w-full max-w-xs"
@@ -165,7 +170,7 @@ export default function AddItem() {
 
                 <div>
                   <div className="label">
-                    <span className="label-text text-xl font-bold">Pick the Sub Items</span>
+                    <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Pick the Sub Items</span>
                   </div>
                   <select
                     className="select select-bordered w-full max-w-xs"
@@ -182,7 +187,7 @@ export default function AddItem() {
               <div>
                 <label className="form-control">
                   <div className="label">
-                    <span className="label-text text-xl font-bold">Description</span>
+                    <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Description</span>
                   </div>
                   <textarea
                     className="textarea textarea-bordered h-24 text-gray-600 capitalize font-serif font-medium"
@@ -192,11 +197,11 @@ export default function AddItem() {
                   ></textarea>
                 </label>
               </div>
-              <div className="grid grid-cols-3 gap-x-6">
+              <div className="grid grid-cols-3 gap-x-6 mobileS:grid-cols-1">
               <div>
                   <label className="form-control w-full max-w-xs">
                     <div className="label">
-                      <span className="label-text text-xl font-bold">Price</span>
+                      <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Price</span>
                     </div>
                     <input
                       type="text"
@@ -211,7 +216,7 @@ export default function AddItem() {
                 <div>
                   <label className="form-control w-full max-w-xs">
                     <div className="label">
-                      <span className="label-text text-xl font-bold">Rating</span>
+                      <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Rating</span>
                     </div>
                     <input
                       type="text"
@@ -226,7 +231,7 @@ export default function AddItem() {
                 <div>
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
-                      <span className="label-text text-xl font-bold">Customization 
+                      <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Customization 
                       <span className={`ml-2 ${!customization?"text-red-500":""}`}>
                       ({customization?"Yes":"No"})
                       </span>
@@ -238,11 +243,11 @@ export default function AddItem() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-x-6">
+              <div className="grid grid-cols-3 gap-x-6 mobileS:grid-cols-1">
                     <div>
                     <label className="form-control w-full max-w-xs">
                     <div className="label">
-                      <span className="label-text text-xl font-bold">Email</span>
+                      <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Email</span>
                     </div>
                     <input
                       type="text"
@@ -257,7 +262,7 @@ export default function AddItem() {
                     <div>
                     <label className="form-control w-full max-w-xs">
                     <div className="label">
-                      <span className="label-text text-xl font-bold">Name</span>
+                      <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Name</span>
                     </div>
                     <input
                       type="text"
@@ -272,7 +277,7 @@ export default function AddItem() {
                     <div>
                     <label className="form-control w-full max-w-xs">
                     <div className="label">
-                      <span className="label-text text-xl font-bold">Stock Status 
+                      <span className={`label-text text-xl font-bold ${themeMode?"text-blue-950":"text-white"}`}>Stock Status 
                       <span className={`ml-2 ${!stockInfo?"text-red-500":""}`}>
                       ({stockInfo?"In stock":"Made to order"})
                       </span>
