@@ -99,8 +99,8 @@ export default function Home() {
   };
   return (
     <>
-      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
-        <div className="w-[1000px] mx-auto mobileS:w-[280px] mobileM:w-[300px] mobileL:w-[425px]">
+      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
+        <div className="w-[1000px] mx-auto mobileS:w-[280px] mobileM:w-[300px] mobileL:w-[425px] tablet:w-[700px]">
           <Swiper
             autoplay={{
               delay: 8000,
@@ -135,13 +135,13 @@ export default function Home() {
           </Swiper>
         </div>
       </section>
-      <section className="w-[1200px] mx-auto my-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
+      <section className="w-[1200px] mx-auto my-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
         <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
         <Fade delay={1e1} cascade damping={1e-1}>
         Craft items
         </Fade>
         </h2>
-        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1">
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-2">
         {
           loading.craftLoader?(<div className="translate-x-[150%] mobileS:translate-x-[50%]">
           <span className="loading loading-spinner loading-lg bg-gradient-to-tr from-sky-300 to-gray-100"></span>
@@ -172,7 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-[1200px] mx-auto mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
+      <section className="w-[1200px] mx-auto mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
         <h2 className={`text-3xl font-mono font-bold capitalize decoration-blue-600 underline underline-offset-8 mb-10 ${themeMode?"text-blue-950":"text-white"}`}>
           
           <Fade cascade>
@@ -180,7 +180,7 @@ export default function Home() {
           </Fade>
         </h2>
 
-        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1">
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-[90%] mx-auto mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-2">
         {
           loading.subItemLoader?(
             <div className="translate-x-[150%] mobileS:translate-x-[50%]">

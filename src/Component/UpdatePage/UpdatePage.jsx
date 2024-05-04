@@ -110,13 +110,13 @@ export default function AddItem() {
         theme="light"
         transition:Bounce
       />
-      <section className="w-[1200px] mx-auto mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
+      <section className="w-[1200px] mx-auto mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
       <h2 className={`text-center font-mono text-2xl font-bold py-[50px] underline ${themeMode?"text-blue-950":"text-white"}`}>
       <Fade cascade damping={1e-1}>
       Update Your Craft Item
       </Fade>
       </h2>
-        <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1">
+        <div className="w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-1 tablet:w-[90%] tablet:mx-auto">
           <div className="border w-full h-[350px] flex justify-center items-center relative">
             <label
               id="imgURL"

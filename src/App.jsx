@@ -44,13 +44,13 @@ export default function App() {
   return (
     <>
       <section
-        className={`h-[80px] w-full ${
+        className={`h-[80px] w-full tablet:w-screen ${
           themeMode
             ? "bg-gradient-to-tr from-purple-600 to-purple-300"
             : "bg-gradient-to-tr from-slate-900 to-slate-500"
         }  flex justify-center items-center`}
       >
-        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden mobileL:hidden">
+        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden mobileL:hidden tablet:w-[768px]">
           <div className="w-[10%] flex flex-row">
             <div>
               <IoFlower />
@@ -59,7 +59,7 @@ export default function App() {
               <img src="https://i.postimg.cc/3RcVWFsz/logo.png" alt="logoImg" />
             </div>
           </div>
-          <div className="w-[70%]">
+          <div className="w-[60%]">
             <ul className="flex flex-row justify-around font-mono capitalize">
               <li>
                 <NavLink to="/home">Home</NavLink>
@@ -75,8 +75,8 @@ export default function App() {
               </li>
             </ul>
           </div>
-          <div className="w-[20%] flex flex-row justify-between">
-            <div className="flex flex-row justify-between">
+          <div className="w-[30%] flex flex-row justify-between tablet:justify-normal">
+            <div className="flex flex-row justify-start">
               {loading ? (
                 <div>
                   <span className="loading loading-ring loading-lg"></span>
@@ -126,7 +126,7 @@ export default function App() {
                 </>
               )}
             </div>
-            <div>
+            <div className="ml-[26px]">
               <label className="swap swap-rotate w-[10px]">
                 {/* this hidden checkbox controls the state */}
                 <input
@@ -324,7 +324,7 @@ export default function App() {
       </section>
 
       <section
-        className={`w-full mx-auto pb-[100px]  ${
+        className={`w-full mx-auto pb-[100px] ${
           themeMode
             ? "bg-transparent"
             : "bg-gradient-to-b from-blue-950 to-slate-600"

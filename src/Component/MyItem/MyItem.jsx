@@ -86,10 +86,10 @@ export default function MyItem() {
   }
   return (
     <>
-      <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
-        <div className="w-full grid grid-cols-[20%_80%] gap-x-4 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1">
+      <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px]">
+        <div className="w-full grid grid-cols-[20%_80%] gap-x-4 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-1 tablet:w-[90%] tablet:mx-auto">
           <div>
-            <div className="w-full border border-purple-500 rounded-lg">
+            <div className="w-full border border-purple-500 rounded-lg tablet:w-[40%] tablet:mx-auto">
               <form onClick={formHandler}>
                 <select className="select select-bordered w-full max-w-xs border border-purple-600">
                   <option value="">Customization</option>
@@ -100,7 +100,7 @@ export default function MyItem() {
               </form>
             </div>
           </div>
-          <div className="w-full mt-[50px] grid grid-cols-3 gap-x-4 gap-y-8 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1">
+          <div className="w-full mt-[50px] grid grid-cols-3 gap-x-4 gap-y-8 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1 tablet:grid-cols-2">
             {
               filter==""?info.map((value,index)=>{
                 return (
