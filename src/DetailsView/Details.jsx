@@ -7,8 +7,8 @@ export default function Details(){
     const {themeMode} = useContext(InfoProvider)
     return(
         <>
-        <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px]">
-            <div className="w-full grid grid-cols-[40%_60%] gap-x-8 items-center mobileS:grid-cols-1">
+        <section className="w-[1200px] mx-auto py-[50px] mobileS:w-[320px] mobileM:w-[375px]">
+            <div className="w-full grid grid-cols-[40%_60%] gap-x-8 items-center mobileS:grid-cols-1 mobileM:grid-cols-1">
                 <div className="w-full">
                     <div className="h-[350px] w-full">
                         <img src={imgURL} alt="coverImg" className="h-full w-full object-cover" />
@@ -19,7 +19,7 @@ export default function Details(){
                     <span className="badge badge-neutral text-lg my-6">
                         {subItem}
                     </span>
-                    <div className="flex flex-row justify-between w-[80%] mobileS:flex-col mobileS:items-center">
+                    <div className="flex flex-row justify-between w-[80%] mobileS:flex-col mobileS:items-center mobileM:flex-col mobileM:items-center">
                         <div>
                             <p className={`font-medium text-base text-gray-600/50 capitalize ${themeMode?"text-blue-950":"text-white"}`}>Rating:
                             <span className="badge badge-secondary ml-2">{rating}</span>
@@ -46,13 +46,13 @@ export default function Details(){
                         </div>
                     </div>
 
-                    <div className="w-[80%] text-lg font-serif font-medium text-justify my-[25px] mobileS:mx-auto">
+                    <div className="w-[80%] text-lg font-serif font-medium text-justify my-[25px] mobileS:mx-auto mobileM:mx-auto">
                         <p className={`${themeMode?"text-blue-950":"text-white"}`}>
                             {description}
                         </p>
                     </div>
 
-                    <div className="flex flex-row justify-between w-[80%] mobileS:mx-auto mobileS:text-center">
+                    <div className="flex flex-row justify-between w-[80%] mobileS:mx-auto mobileS:text-center mobileM:mx-auto mobileM:text-center">
                         <div>
                             <p className={`font-medium text-base text-gray-600/50 capitalize ${themeMode?"text-blue-950":"text-white"}`}>
                                 name: <span className="badge badge-secondary ml-4">{name}</span>

@@ -11,6 +11,7 @@ export default {
       },
       screens:{
         'mobileS':{'min':'0px','max':'320px'},
+        'mobileM':{'min':'320px','max':'375px'}
       }
     },
   },

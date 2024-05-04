@@ -50,7 +50,7 @@ export default function App() {
             : "bg-gradient-to-tr from-slate-900 to-slate-500"
         }  flex justify-center items-center`}
       >
-        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden">
+        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden">
           <div className="w-[10%] flex flex-row">
             <div>
               <IoFlower />
@@ -158,7 +158,9 @@ export default function App() {
           </div>
         </nav>
 
-        <nav className="hidden mobileS:flex mobileS:flex-row mobileS:justify-around mobileS:items-center mobileS:h-full mobileS:w-full">
+        <nav className="hidden mobileS:flex mobileS:flex-row mobileS:justify-around mobileS:items-center mobileS:h-full mobileS:w-full
+        mobileM:flex mobileM:flex-row mobileM:justify-around mobileM:items-center mobileM:h-full mobileM:w-full
+        ">
           <div
             onClick={() => {
               setMenu(!menu);
@@ -212,7 +214,9 @@ export default function App() {
         </nav>
       </section>
 
-      <section className="hidden mobileS:w-[50%] mobileS:block mobileS:fixed mobileS:top-[80px] mobileS:z-40">
+      <section className="hidden mobileS:w-[50%] mobileS:block mobileS:fixed mobileS:top-[80px] mobileS:z-40
+      mobileM:w-[50%] mobileM:block mobileM:fixed mobileM:top-[80px] mobileM:z-40
+      ">
       {
         menu?
         <Fade cascade direction="left">
