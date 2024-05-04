@@ -4,8 +4,8 @@ import { FaFacebookSquare,FaLinkedin,FaGithubSquare } from "react-icons/fa";
 export default function Footer() {
   return (
     <>
-      <div className="w-[1200px] mx-auto mobileS:w-[320px] mobileM:w-[375px]">
-        <div className="grid grid-cols-[50%_25%_25%] gap-x-5 py-[50px] mobileS:grid-cols-1 mobileM:grid-cols-1">
+      <div className="w-[1200px] mx-auto mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
+        <div className="grid grid-cols-[50%_25%_25%] gap-x-5 py-[50px] mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1">
           <div>
             <h3 className="font-mono font-bold text-gray-800 text-2xl underline underline-offset-8 decoration-blue-500">About us</h3>
             <p className="capitalize font-mono text-xl text-slate-950 font-medium mt-6">what we provide</p>

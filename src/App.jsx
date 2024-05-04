@@ -50,7 +50,7 @@ export default function App() {
             : "bg-gradient-to-tr from-slate-900 to-slate-500"
         }  flex justify-center items-center`}
       >
-        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden">
+        <nav className="w-[1200px] mx-auto text-white flex flex-row items-center mobileS:hidden mobileM:hidden mobileL:hidden">
           <div className="w-[10%] flex flex-row">
             <div>
               <IoFlower />
@@ -160,6 +160,7 @@ export default function App() {
 
         <nav className="hidden mobileS:flex mobileS:flex-row mobileS:justify-around mobileS:items-center mobileS:h-full mobileS:w-full
         mobileM:flex mobileM:flex-row mobileM:justify-around mobileM:items-center mobileM:h-full mobileM:w-full
+        mobileL:flex mobileL:flex-row mobileL:justify-around mobileL:items-center mobileL:h-full mobileL:w-full
         ">
           <div
             onClick={() => {
@@ -216,6 +217,7 @@ export default function App() {
 
       <section className="hidden mobileS:w-[50%] mobileS:block mobileS:fixed mobileS:top-[80px] mobileS:z-40
       mobileM:w-[50%] mobileM:block mobileM:fixed mobileM:top-[80px] mobileM:z-40
+      mobileL:w-[50%] mobileL:block mobileL:fixed mobileL:top-[80px] mobileL:z-40
       ">
       {
         menu?

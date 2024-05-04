@@ -109,13 +109,13 @@ export default function AddItem() {
         theme="light"
         transition:Bounce
       />
-      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px] mobileM:w-[375px]">
+      <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px]">
       <h2 className={`text-center font-mono text-2xl font-bold my-[50px] underline ${themeMode?"text-blue-950":"text-white"}`}>
       <Fade delay={1e2} cascade damping={1e-1}>
       Add Your Craft Item
       </Fade>
       </h2>
-        <div className={`w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] ${themeMode?"text-blue-950":"text-white"} mobileS:grid-cols-1 mobileM:grid-cols-1`}>
+        <div className={`w-full grid grid-cols-[40%_60%] gap-x-6 mt-[50px] ${themeMode?"text-blue-950":"text-white"} mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-1`}>
           <div className="border w-full h-[350px] flex justify-center items-center relative">
             <label
               id="imgURL"
@@ -192,7 +192,7 @@ export default function AddItem() {
                   ></textarea>
                 </label>
               </div>
-              <div className="grid grid-cols-3 gap-x-6 mobileS:grid-cols-1 mobileM:grid-cols-1">
+              <div className="grid grid-cols-3 gap-x-6 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-2">
               <div>
                   <label className="form-control w-full max-w-xs">
                     <div className="label">
@@ -236,7 +236,7 @@ export default function AddItem() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-x-6 mobileS:grid-cols-1 mobileM:grid-cols-1">
+              <div className="grid grid-cols-3 gap-x-6 mobileS:grid-cols-1 mobileM:grid-cols-1 mobileL:grid-cols-2">
                     <div>
                     <label className="form-control w-full max-w-xs">
                     <div className="label">
