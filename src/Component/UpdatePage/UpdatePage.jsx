@@ -81,10 +81,9 @@ export default function AddItem() {
       owner
     }
 
-    fetch(`http://localhost:5000/updateInfo/${_id}`,{
-        method:'Put',
+    fetch(`https://server-side-pearl.vercel.app/updateInfo/${_id}`,{
+        method:'PUT',
         headers:{
-            "accept":"application/json",
             "content-type":"application/json"
         },
         body:JSON.stringify(wrap)
@@ -95,6 +94,7 @@ export default function AddItem() {
         },2000)
     })
   };
+  // 
   return (
     <>
     <ToastContainer

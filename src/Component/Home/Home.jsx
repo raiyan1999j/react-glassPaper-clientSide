@@ -36,6 +36,15 @@ const categoryInfo = [
       "Glass painting involves using special paints and techniques to decorate glass surfaces with colorful designs, adding beauty and personality to any space.",
   },
 ];
+
+const summeryPoint= [
+  "Card making is a creative art form involving handmade greeting cards.",
+  "It allows for personal expression and creativity.",
+  "Various techniques such as paper cutting, stamping, and embossing are used.",
+  "Cards can be customized for different occasions like birthdays, holidays, and special events.",
+  "Offers endless possibilities for design and customization.",
+  "Creates unique and meaningful cards that bring joy to both sender and recipient."
+]
 export default function Home() {
   const [container, setContainer] = useState([]);
   const [filter, setFilter] = useState();
@@ -47,12 +56,14 @@ export default function Home() {
 
   useEffect(() => {
     async function loadData() {
-      const step1 = await fetch("http://localhost:5000/getItems");
+      const step1 = await fetch("https://server-side-pearl.vercel.app/getItems");
       const step2 = await step1.json();
 
       setContainer(step2);
       setLoading({craftLoader:true,subItemLoader:true});
       restructure(step2);
+
+      console.log(step1)
     }
     loadData();
   }, []);
@@ -100,7 +111,7 @@ export default function Home() {
   return (
     <>
       <section className="w-[1200px] mx-auto pt-[50px] mobileS:w-[320px] mobileM:w-[375px] mobileL:w-[425px] tablet:w-[768px] laptop:w-[1024px]">
-        <div className="w-[1000px] mx-auto mobileS:w-[280px] mobileM:w-[300px] mobileL:w-[425px] tablet:w-[700px] laptop:w-[960px]">
+        <div className="w-[1000px] mx-auto mobileS:w-[280px] mobileM:w-[300px] mobileL:w-[425px] tablet:w-[680px] laptop:w-[960px]">
           <Swiper
             autoplay={{
               delay: 8000,
@@ -212,6 +223,60 @@ export default function Home() {
             }}
           />
         </div>
+      </section>
+
+      <section className="w-[1200px] mx-auto mt-[50px]">
+        <div className="grid grid-cols-2 gap-x-4 items-center">
+          <div>
+            <div className="h-[350px] w-full">
+              <img src="https://i.postimg.cc/52bC324B/1-analyst.png" alt="informationImg" className="h-full w-full object-contain" />
+            </div>
+          </div>
+          <div>
+            <p className={`font-serif font-medium text-xl text-justify ${themeMode?"text-blue-950":"text-white"} mb-6`}>
+            Card making is a creative and fulfilling art form that involves crafting handmade greeting cards for various occasions. It allows individuals to express their creativity while creating personalized messages for their loved ones.
+            </p>
+            <ul className={`w-[80%] ${themeMode?"text-sky-950":"text-white"} list-disc`}>
+              {summeryPoint.map((value,index)=>{
+                return(
+                  <li key={index} className="mb-4">{value}</li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-[1200px] mx-auto mt-[50px]">
+          <div className="w-[80%] mx-auto">
+          <div className="collapse collapse-arrow bg-base-200">
+  <input type="radio" name="my-accordion-2" defaultChecked /> 
+  <div className="collapse-title text-xl font-medium">
+  What materials do I need to start card making?
+  </div>
+  <div className="collapse-content"> 
+    <p className="w-[60%] text-justify font-serif text-base font-normal">Card making requires basic supplies such as cardstock, patterned paper, adhesives (like glue or tape runner), stamps, ink pads, and embellishments (such as stickers, ribbons, or gems).</p>
+  </div>
+</div>
+<div className="collapse collapse-arrow bg-base-200">
+  <input type="radio" name="my-accordion-2" /> 
+  <div className="collapse-title text-xl font-medium">
+  What are some beginner-friendly card making techniques?
+  </div>
+  <div className="collapse-content"> 
+    <p className="w-[60%] text-justify font-serif text-base font-normal">For beginners, simple techniques like stamping, where you use inked stamps to add images or sentiments to your cards, are popular. Embossing, which creates raised or textured designs using heat or dry embossing folders, is also beginner-friendly. </p>
+  </div>
+</div>
+<div className="collapse collapse-arrow bg-base-200">
+  <input type="radio" name="my-accordion-2" /> 
+  <div className="collapse-title text-xl font-medium">
+  Where can I find inspiration for card designs?
+  </div>
+  <div className="collapse-content"> 
+    <p className="w-[60%] text-justify font-serif text-base font-normal">Inspiration for card designs can come from various sources. Online platforms like Pinterest or crafting blogs offer a wealth of ideas and tutorials. Browsing through craft stores and looking at card samples and displays can also inspire creativity.</p>
+  </div>
+</div>
+          </div>
       </section>
     </>
   );

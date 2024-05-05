@@ -16,6 +16,8 @@ import { MdRememberMe } from "react-icons/md";
 export default function App() {
   const { changeTheme, themeMode, userData, logoutUser, loading } =
     useContext(InfoProvider);
+
+    console.log({userData})
   const navigate = useNavigate();
   const location = useLocation();
   const [menu, setMenu] = useState(true);
@@ -75,7 +77,7 @@ export default function App() {
               </li>
             </ul>
           </div>
-          <div className="w-[20%] flex flex-row justify-between tablet:justify-normal">
+          <div className="w-[20%] tablet:w-[35%] flex flex-row justify-between tablet:justify-normal">
             <div className="flex flex-row justify-between">
               {loading ? (
                 <div>
@@ -83,7 +85,7 @@ export default function App() {
                 </div>
               ) : (
                 <>
-                  {userData ? (
+                  {userData?.uid ? (
                     <div className="dropdown dropdown-hover">
                       <div tabIndex={0} role="button" className="m-1">
                         <img

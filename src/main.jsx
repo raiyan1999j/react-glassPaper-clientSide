@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         path:'/details/:id',
         element:<PrivetRoute><Details/></PrivetRoute>,
         loader:async ({params})=>{
-          const step1 = await fetch(`http://localhost:5000/getDetails/${params.id}`);
+          const step1 = await fetch(`https://server-side-pearl.vercel.app/getDetails/${params.id}`);
 
           const step2 = await step1.json();
 
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         path:'/getSpecific/:id',
         element:<PrivetRoute><UpdatePage/></PrivetRoute>,
         loader:async ({params})=>{
-          const step1 = await fetch(`http://localhost:5000/getSpecific/${params.id}`);
+          const step1 = await fetch(`https://server-side-pearl.vercel.app/getSpecific/${params.id}`);
 
           const step2 = await step1.json();
 
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         path:'/subCategoryPage/:category',
         element:<SubCategoryPage/>,
         loader: async ({params})=>{
-          const step1 = await fetch(`http://localhost:5000/subCategoryPage/${params.category}`)
+          const step1 = await fetch(`https://server-side-pearl.vercel.app/subCategoryPage/${params.category}`)
 
           const step2 = await step1.json();
 

@@ -15,7 +15,7 @@ export default function ArtCraft(){
 
     useEffect(()=>{
         async function loadData(){
-          const step1 = await fetch('http://localhost:5000/getItems');
+          const step1 = await fetch('https://server-side-pearl.vercel.app/getItems');
           const step2 = await step1.json();
           
           

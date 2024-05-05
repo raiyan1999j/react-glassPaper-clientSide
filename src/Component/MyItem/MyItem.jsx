@@ -32,7 +32,7 @@ export default function MyItem() {
 
         setInfo(updateValue);
 
-        fetch(`http://localhost:5000/removeItem/${value}`, {
+        fetch(`https://server-side-pearl.vercel.app/removeItem/${value}`, {
           method: "Delete",
           headers: {
             accept: "application/json",
@@ -53,7 +53,7 @@ export default function MyItem() {
         nameSelection = userData.email;
       }
 
-      await fetch(`http://localhost:5000/myItem/${nameSelection}`)
+      await fetch(`https://server-side-pearl.vercel.app/myItem/${nameSelection}`)
         .then((response) => response.json())
         .then((data) => {
           setInfo(data);

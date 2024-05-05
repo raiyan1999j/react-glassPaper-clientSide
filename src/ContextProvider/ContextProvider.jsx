@@ -9,9 +9,10 @@ export const InfoProvider = createContext(null);
 export default function ContextProvider({children}){
     const [themeMode,setTheme] = useState(true);
     const [userData,setUser] = useState();
-    const [loading,setLoading] = useState(true);
+    const [loading,setLoading] = useState(false);
     const [routePage,setRoutePage] = useState(false);
 
+    console.log(userData);
     const changeTheme=(value)=>{
         setTheme(value);
 
@@ -80,11 +81,11 @@ export default function ContextProvider({children}){
 
     const loginGithub=async ()=>{
         const provider = new GithubAuthProvider();
-
+        setLoading(true);
         await signInWithPopup(fireAuth,provider)
         .then(async (userInfo)=>{
             setUser(userInfo.user);
-            setLoading(true);
+            setLoading(false);
             setRoutePage(true)
         })
     }
@@ -97,18 +98,19 @@ export default function ContextProvider({children}){
         setLoading(true)
     }
     useEffect(()=>{
-        const unMount =()=>{
+        const unMount =
             onAuthStateChanged(fireAuth,(userInfo)=>{
                 setUser(userInfo)
                 setLoading(false)
+                console.log('from useEffect')
                 console.log(userInfo)
             })
-        }
+       
 
         return ()=>{
             unMount()
         }
-    },[userData?.displayName,userData?.photoURL])
+    },[])
     const infoBundle={changeTheme,themeMode,registerUser,userData,loading,loginUser,logoutUser,routePage,loginGoogle,loginGithub}
     return(
         <>

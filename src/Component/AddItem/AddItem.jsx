@@ -79,7 +79,7 @@ export default function AddItem() {
       owner
     }
 
-    fetch('http://localhost:5000/addItem',{
+    fetch('https://server-side-pearl.vercel.app/addItem',{
       method:'Post',
       headers:{
         "accept":"application/json",
