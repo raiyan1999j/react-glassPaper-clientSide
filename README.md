@@ -1,4 +1,4 @@
-Welcome to GlasPaper - Your Art & Craft Destination
+Welcome to GlasPaper - Your Art & Craft Destination(Paper Crafts & Glass Art) 
 
 GlasPaper is your one-stop destination for all things art and craft, where you can find the perfect items to decorate your beautiful house and unleash your creativity. Whether you're looking for unique pieces to adorn your home or interested in showcasing your own creations, GlasPaper has you covered.
 
